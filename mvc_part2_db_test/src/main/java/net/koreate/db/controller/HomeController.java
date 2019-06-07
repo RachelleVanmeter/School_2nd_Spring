@@ -1,4 +1,4 @@
-package net.koreate.db;
+package net.koreate.db.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
