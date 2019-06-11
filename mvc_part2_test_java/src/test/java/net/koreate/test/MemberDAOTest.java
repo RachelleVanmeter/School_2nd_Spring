@@ -20,6 +20,7 @@ public class MemberDAOTest {
 	
 	@Inject
 	MemberDAO dao;
+	
 	/*
 	@Test
 	public void testInsertMember() {
@@ -34,7 +35,7 @@ public class MemberDAOTest {
 	@Test
 	public void readMember() {
 		MemberVO member1 = dao.readMember("user01");
-		System.out.println("readMember : "+member1);
+		System.out.println("readMember : " + member1);
 		
 		System.out.println("reMemberWithPass");
 		MemberVO member2 = dao.reMemberWithPass("user01", "pass01");

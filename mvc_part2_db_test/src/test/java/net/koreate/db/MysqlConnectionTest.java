@@ -15,11 +15,11 @@ public class MysqlConnectionTest {
 
 	@Test
 	public void testConnection() {
-		Connection con = null;
+		Connection conn = null;
 		try {
 			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
-			System.out.println("DRIVER 연결성공  : " + con);
+			conn = DriverManager.getConnection(url, username, password);
+			System.out.println("DRIVER 연결성공  : " + conn);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			System.out.println("드라이버를 찾을 수 없음");
@@ -27,11 +27,7 @@ public class MysqlConnectionTest {
 			e.printStackTrace();
 			System.out.println("계정 정보 오류");
 		} finally {
-			try {
-				con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			try { conn.close(); } catch (SQLException e) {}
 		}
 	}
 

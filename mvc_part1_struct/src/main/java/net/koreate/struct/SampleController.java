@@ -22,4 +22,5 @@ public class SampleController {
 		System.out.println("doB");
 		return "home";
 	}
+	
 }

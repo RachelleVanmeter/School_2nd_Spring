@@ -29,7 +29,7 @@ public class MemberDAOImpl implements MemberDAO{
 
 	@Override
 	public MemberVO readMember(String userid) {
-		MemberVO member  = session.selectOne(namespace+".readMember",userid);
+		MemberVO member = session.selectOne(namespace+".readMember",userid);
 		return member;
 	}
 
@@ -48,6 +48,4 @@ public class MemberDAOImpl implements MemberDAO{
 		return memberList;
 	}
 	
-	
-
 }

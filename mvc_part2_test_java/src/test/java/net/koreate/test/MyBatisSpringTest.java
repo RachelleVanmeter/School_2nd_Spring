@@ -20,25 +20,13 @@ public class MyBatisSpringTest {
 	
 	@Test
 	public void testConnection() {
-		
-		try(SqlSession session = sqlSessionFactory.openSession()){
-			System.out.println("연결 정보 객체 생성 완료 : "+ session);
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			System.out.println("연결 정보 객체 생성 완료 : " + session);
 			System.out.println("con : " + session.getConnection());
 		}catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("객체 생성 오류");
 		}
-		
-		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

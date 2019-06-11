@@ -1,12 +1,10 @@
 package net.koreate.struct.vo;
 
 public class ProductVO {
-
 	private String name;
 	private int price;
 
-	public ProductVO() {
-	}
+	public ProductVO() {}
 
 	public ProductVO(String name, int price) {
 		this.name = name;

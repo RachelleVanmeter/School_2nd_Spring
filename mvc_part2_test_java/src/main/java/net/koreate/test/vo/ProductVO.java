@@ -1,7 +1,6 @@
 package net.koreate.test.vo;
 
 public class ProductVO {
-	
 	private String name;
 	private int price;
 	

@@ -16,20 +16,18 @@ public class MysqlTest {
 	@Test
 	public void testConnection() {
 		System.out.println("connection test");
-		Connection con = null;
+		Connection conn = null;
 		try {
 			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			conn = DriverManager.getConnection(url, username, password);
 		} catch (ClassNotFoundException e) {
 			System.out.println("DRIVER 를 찾을 수 없습니다.");
 			e.printStackTrace();
 		} catch (SQLException e) {
 			System.out.println("연결 정보가 일치하지 않습니다.");
 			e.printStackTrace();
-		}finally {
-			try {
-				con.close();
-			} catch (SQLException e) {}
+		} finally {
+			try { conn.close(); } catch (SQLException e) {}
 		}
 	}
 }

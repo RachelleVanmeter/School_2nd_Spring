@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="net.koreate.mappers.MemberMapper">
 
 	<insert id="insertMember" parameterType="net.koreate.test.vo.MemberVO">
-		INSERT INTO tbl_member(userid,userpw,username,regdate,updatedate)
-		VALUES(#{userid},#{userpw},#{username},now(),now())
+		INSERT INTO tbl_member(userid, userpw, username, regdate, updatedate)
+		VALUES(#{userid}, #{userpw}, #{username}, now(), now())
 	</insert>
 	
 	<select id="readMember" parameterType="String" resultType="net.koreate.test.vo.MemberVO">

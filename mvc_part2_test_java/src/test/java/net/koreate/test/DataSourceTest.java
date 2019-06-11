@@ -22,7 +22,6 @@ public class DataSourceTest {
 	
 	@Test
 	public void test() {
-		
 		Connection conn = null;
 		try {
 			conn = ds.getConnection();
@@ -30,18 +29,10 @@ public class DataSourceTest {
 		} catch (SQLException e) {
 			System.out.println("연결정보 오류");
 			e.printStackTrace();
-		}finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {}
+		} finally {
+			try { conn.close(); } catch (SQLException e) {}
 		}
 		
 	}
 	
-	
-	
 }
-
-
-
-

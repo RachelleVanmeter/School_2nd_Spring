@@ -15,7 +15,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 })
 public class MybatisTest {
 	
-	
 	@Inject
 	SqlSessionFactory sqlSessionFactory;
 	
@@ -25,4 +24,5 @@ public class MybatisTest {
 		System.out.println("연결정보 생성완료 : " + session);
 		System.out.println("Connection sqlSession : " + session.getConnection());
 	}
+	
 }

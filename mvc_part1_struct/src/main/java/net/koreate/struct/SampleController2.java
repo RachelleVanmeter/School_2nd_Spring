@@ -22,8 +22,7 @@ public class SampleController2 {
 	}
 
 	@RequestMapping(value = "doD", method = { RequestMethod.POST, RequestMethod.GET })
-	public String doD(HttpServletRequest request, @RequestParam("msg") String message,
-			@ModelAttribute("msg") String msg) {
+	public String doD(HttpServletRequest request, @RequestParam("msg") String message, @ModelAttribute("msg") String msg) {
 		String requestMsg = request.getParameter("msg");
 		System.out.println("getParameter msg : " + requestMsg);
 		System.out.println("request param msg : " + message);
@@ -32,15 +31,11 @@ public class SampleController2 {
 
 	@RequestMapping(value = "doE")
 	public String doE(Model model) {
-
 		ProductVO product = new ProductVO("sample", 10000);
-
 		model.addAttribute("product", product);
-
 		ProductVO product1 = new ProductVO("sample1", 2000);
 		// key : productVO
 		model.addAttribute(product1);
-
 		return "product";
 	}
 
@@ -53,4 +48,5 @@ public class SampleController2 {
 		mav.setViewName("product");
 		return mav;
 	}
+	
 }
