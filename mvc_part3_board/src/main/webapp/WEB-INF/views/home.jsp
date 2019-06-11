@@ -14,7 +14,17 @@
 			
 			<!-- Main content -->
 			<section class="content">
-				
+				<div class="row">
+					<div class="col-md-12">
+						<div class="box">
+							<div class="box-header with-border">
+								<h3 class="box-title">REGISTER BOARD</h3>
+							</div>
+							<a href="/board/register" class="btn btn-info">글쓰기</a>
+							<a href="/board/listAll" class="btn btn-info">전체 게시물 조회</a>
+						</div>
+					</div>
+				</div>
 			</section>
 			<!-- /.content -->
 		</div>

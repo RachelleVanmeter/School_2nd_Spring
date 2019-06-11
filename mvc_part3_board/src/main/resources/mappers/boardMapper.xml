@@ -3,5 +3,12 @@
 	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.koreate.mappers.BoardMapper">
-	
+	<insert id="insert" parameterType="BoardVo">
+		INSERT INTO tbl_board(title, content, writer)
+		VALUES(#{title}, #{content}, #{writer})
+	</insert>
+	<select id="listAll" resultType="BoardVo">
+		SELECT * FROM tbl_board
+		ORDER BY bno DESC
+	</select>
 </mapper>
