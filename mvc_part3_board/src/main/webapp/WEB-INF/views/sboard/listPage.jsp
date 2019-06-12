@@ -21,6 +21,37 @@
 							<div class="box-header with-border">
 								<h3 class="box-title">게시글 목록</h3>
 							</div>
+							<div class="col-lg-2">
+								<select id="searchType" name="searchType" class="form-control">
+									<option value="n">--------------------</option>
+									<option value="t">TITLE</option>
+									<option value="c">CONTENT</option>
+									<option value="w">WRITER</option>
+									<option value="tc">TITLE & CONTENT</option>
+									<option value="cw">CONTENT & WRITER</option>
+									<option value="tcw">TITLE & CONTENT & WRITER</option>
+								</select>
+							</div>
+							<div class="con-lg-3">
+								<input id="keyword" type="text" name="keyword" class="form-control">
+							</div>
+							<div>
+								<input id="searchBtn" type="button" class="btn btn-primary" value="SEARCH">
+								<input id="newBtn" type="button" class="btn btn-primary" value="NEW BOARD">
+								<script type="text/javascript">
+									$(function() {
+										$('#searchBtn').click(function() {
+											var searchTypeVal = $('#searchType').val();
+											var keywordVal = $('#keyword').val();
+											location.href = '/sboard/list?searchType=' + searchTypeVal + '&keyword=' + keywordVal;
+										});
+										
+										$('#newBtn').click(function() {
+											location.href = '/sboard/register';
+										});
+									});
+								</script>
+							</div>
 							<div class="box-body">
 								<table class="table table-bordered">
 									<thead>

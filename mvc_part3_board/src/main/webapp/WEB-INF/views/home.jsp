@@ -24,6 +24,7 @@
 							<a href="/board/listAll" class="btn btn-info">전체 게시물 조회</a>
 							<a href="/board/listCri" class="btn btn-info">전체 게시물 조회 CRI</a>
 							<a href="/board/listPage" class="btn btn-info">전체 게시물 조회 Paging</a>
+							<a href="/sboard/list" class="btn btn-info">검색 게시판</a>
 						</div>
 					</div>
 				</div>

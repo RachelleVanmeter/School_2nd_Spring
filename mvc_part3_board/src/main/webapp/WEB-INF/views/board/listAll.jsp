@@ -45,10 +45,14 @@
 									</tbody>
 								</table>
 								<script type="text/javascript">
-									var msg = '${result}';
+									check('${result}');
+									history.replaceState({}, null, null);
 									
-									if (msg == 'SUCCESS') alert('작업 완료');
-									if (msg == 'FAIL') alert('작업 실패');
+									function check(msg) {
+										if (msg != null || history.state) return;
+										if (msg == 'SUCCESS') alert('작업 완료');
+										else alert('작업 실패');
+									}
 								</script>
 							</div>
 						</div>

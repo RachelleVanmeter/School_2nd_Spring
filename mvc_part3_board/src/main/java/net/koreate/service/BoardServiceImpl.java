@@ -33,7 +33,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void updateViewCnt(int bno) {
-		
+		dao.updateViewCnt(bno);
 	}
 
 	@Override

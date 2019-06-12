@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -61,19 +62,19 @@ public class BoardController {
 	}
 	
 	@PostMapping("/modify")
-	public String modify(BoardVo board, RedirectAttributes rttr) {
+	public String modify(BoardVo board, @ModelAttribute("page") int page, RedirectAttributes rttr) {
 		log.info("post modify called!!! " + board);
 		String msg = service.modify(board);
 		rttr.addFlashAttribute("result", msg);
-		return "redirect:/board/read?bno=" + board.getBno();
+		return "redirect:/board/readDetail?bno=" + board.getBno() + "&page=" + page;
 	}
 	
 	@PostMapping("/delete")
-	public String delete(@RequestParam("bno") int bno, RedirectAttributes rttr) {
+	public String delete(@RequestParam("bno") int bno, @ModelAttribute("page") int page, RedirectAttributes rttr) {
 		log.info("get delete called!!! " + bno);
 		String msg = service.remove(bno);
 		rttr.addFlashAttribute("result", msg);
-		return "redirect:/board/listAll";
+		return "redirect:/board/listPage?page=" + page;
 	}
 	
 	@GetMapping("/listCri")
@@ -94,6 +95,22 @@ public class BoardController {
 		pageMaker.setTotalCount(service.totalCount());
 		log.info("pageMaker : " + pageMaker);
 		model.addAttribute(pageMaker);
+	}
+	
+	@GetMapping("/readPage")
+	public String readPage(@RequestParam("bno") int bno, @RequestParam("page") int page, RedirectAttributes rttr) {
+		log.info("get readPage called!!! " + bno);
+		service.updateViewCnt(bno);
+		rttr.addAttribute("bno", bno);
+		rttr.addAttribute("page", page);
+		return "redirect:/board/readDetail";
+	}
+	
+	@GetMapping("/readDetail")
+	public String readDetail(@ModelAttribute("bno") int bno, @ModelAttribute("page") int page, Model model) {
+		log.info("get readDetail called!!! " + bno);
+		model.addAttribute("board", service.read(bno));
+		return "/board/readPage";
 	}
 	
 }

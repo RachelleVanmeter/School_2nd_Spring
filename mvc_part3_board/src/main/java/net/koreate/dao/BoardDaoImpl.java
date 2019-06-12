@@ -35,8 +35,7 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public void updateViewCnt(int bno) {
-		// TODO Auto-generated method stub
-		
+		session.update(namespase + ".updateViewCnt", bno);
 	}
 
 	@Override

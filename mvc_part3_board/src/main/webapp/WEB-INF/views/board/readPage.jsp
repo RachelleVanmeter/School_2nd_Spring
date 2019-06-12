@@ -41,6 +41,7 @@
 								<input type="button" class="btn btn-primary" value="LIST">
 								<form method="post" id="readForm">
 									<input type="hidden" name="bno" value="${board.bno}">
+									<input type="hidden" name="page" value="${page}">
 								</form>
 							</div>
 							<script type="text/javascript">
@@ -67,7 +68,10 @@
 									});
 									
 									$('.btn-primary').click(function() {
-										location.href = '/board/listAll';
+										//location.href = '/board/listAll';
+										readForm.attr('action', '/board/listPage');
+										readForm.attr('method', 'get');
+										readForm.submit();
 									});
 								});
 							</script>

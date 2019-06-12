@@ -26,4 +26,8 @@
 	<select id="totalCount" resultType="int">
 		SELECT COUNT(*) FROM tbl_board
 	</select>
+	<update id="updateViewCnt" parameterType="int">
+		UPDATE tbl_board SET viewcnt = viewcnt + 1
+		WHERE bno = #{bno}
+	</update>
 </mapper>
