@@ -9,7 +9,7 @@
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
 					<li><a href="#">Board</a></li>
-					<li class="active">REGISTER</li>
+					<li class="active">MODIFY</li>
 				</ol>
 			</section>
 			
@@ -19,25 +19,26 @@
 					<div class="col-md-12">
 						<div class="box">
 							<div class="box-header with-border">
-								<h3 class="box-title">REGISTER BOARD</h3>
+								<h3 class="box-title">MODIFY BOARD</h3>
 							</div>
 							<form method="post">
+								<input type="hidden" name="bno" value="${board.bno}">
 								<div class="box-body">
-									<div class="form-group">
-										<label>TITLE</label>
-										<input type="text" name="title" class="form-control" placeholder="Enter Title..." required>
-									</div>
-									<div class="form-group">
-										<label>CONTENT</label>
-										<textarea name="content" class="form-control" rows="3" placeholder="Enter Content..."></textarea>
-									</div>
-									<div class="form-group">
-										<label>WRITER</label>
-										<input type="text" name="writer" class="form-control" placeholder="Enter Writer..." required>
-									</div>
+										<div class="form-group">
+											<label>TITLE</label>
+											<input class="form-control" type="text" name="title" value="${board.title}">
+										</div>
+										<div class="form-group">
+											<label>CONTENT</label>
+											<textarea class="form-control" name="content" rows="4">${board.content}</textarea>
+										</div>
+										<div class="form-group">
+											<label>WRITER</label>
+											<input class="form-control" type="text" name="writer" value="${board.writer}">
+										</div>
 								</div>
 								<div class="box-footer">
-									<input type="submit" value="등록" class="btn btn-warning">
+									<input type="submit" class="btn btn-warning" value="MODIFY">
 								</div>
 							</form>
 						</div>

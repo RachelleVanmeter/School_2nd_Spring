@@ -27,7 +27,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardVo read(int bno) {
-		return null;
+		return dao.read(bno);
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public String modify(BoardVo board) {
-		return null;
+		return getResult(dao.update(board));
 	}
 
 	@Override

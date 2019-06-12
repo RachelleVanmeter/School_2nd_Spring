@@ -8,7 +8,8 @@
 				<h1>KOREATE PROJECTS <small>홈페이지에 오시걸 환영합니다.</small></h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">KOREATE PROJECTS</li>
+					<li><a href="#">Board</a></li>
+					<li class="active">List All</li>
 				</ol>
 			</section>
 			
@@ -35,7 +36,7 @@
 										<c:forEach var="board" items="${boardList}">
 											<tr>
 												<td>${board.bno}</td>
-												<td>${board.title}</td>
+												<td><a href="/board/read?bno=${board.bno}">${board.title}</a></td>
 												<td>${board.writer}</td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd HH:ss" value="${board.regdate}" /></td>
 												<td><span class="badge bg-red">${board.viewcnt}</span></td>

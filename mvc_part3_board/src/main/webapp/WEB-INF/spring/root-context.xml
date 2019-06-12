@@ -15,7 +15,7 @@
 	
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/mydata?serverTimezone=Asia/Seoul&amp;useSSL=false"/>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/mydata?serverTimezone=Asia/Seoul&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"/>
 		<property name="username" value="java"/>
 		<property name="password" value="java"/>
 		<property name="maximumPoolSize" value="200"/>

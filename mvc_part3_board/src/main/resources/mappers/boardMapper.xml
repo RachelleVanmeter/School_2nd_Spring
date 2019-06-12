@@ -11,4 +11,11 @@
 		SELECT * FROM tbl_board
 		ORDER BY bno DESC
 	</select>
+	<select id="read" parameterType="int" resultType="BoardVo">
+		SELECT * FROM tbl_board WHERE bno = #{bno}
+	</select>
+	<update id="update">
+		UPDATE tbl_board SET title = #{title}, content = #{content}, writer = #{writer}
+		WHERE bno = #{bno}
+	</update>
 </mapper>

@@ -29,8 +29,7 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public BoardVo read(int bno) {
-		// TODO Auto-generated method stub
-		return null;
+		return session.selectOne(namespase + ".read", bno);
 	}
 
 	@Override
@@ -41,8 +40,7 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public int update(BoardVo board) {
-		// TODO Auto-generated method stub
-		return 0;
+		return session.update(namespase + ".update", board);
 	}
 
 	@Override
