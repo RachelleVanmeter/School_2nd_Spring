@@ -3,6 +3,7 @@ package net.koreate.service;
 import java.util.List;
 
 import net.koreate.vo.BoardVo;
+import net.koreate.vo.Criteria;
 
 public interface BoardService {
 	
@@ -12,5 +13,7 @@ public interface BoardService {
 	void updateViewCnt(int bno);
 	String modify(BoardVo board);
 	String remove(int bno);
+	List<BoardVo> listCri(Criteria cri);
+	int totalCount();
 	
 }

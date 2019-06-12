@@ -3,6 +3,7 @@ package net.koreate.dao;
 import java.util.List;
 
 import net.koreate.vo.BoardVo;
+import net.koreate.vo.Criteria;
 
 public interface BoardDao {
 	
@@ -12,5 +13,7 @@ public interface BoardDao {
 	void updateViewCnt(int bno);
 	int update(BoardVo board);
 	int delete(int bno);
+	List<BoardVo> listCri(Criteria cri);
+	int totalCount();
 	
 }

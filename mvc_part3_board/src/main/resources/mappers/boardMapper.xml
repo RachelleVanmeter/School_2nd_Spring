@@ -20,4 +20,10 @@
 	<delete id="delete" parameterType="int">
 		DELETE FROM tbl_board WHERE bno = #{bno}
 	</delete>
+	<select id="listCri" parameterType="criteria" resultType="BoardVo">
+		SELECT * FROM tbl_board ORDER BY bno DESC LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	<select id="totalCount" resultType="int">
+		SELECT COUNT(*) FROM tbl_board
+	</select>
 </mapper>

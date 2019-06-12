@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import net.koreate.dao.BoardDao;
 import net.koreate.vo.BoardVo;
+import net.koreate.vo.Criteria;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -45,10 +46,20 @@ public class BoardServiceImpl implements BoardService {
 		return getResult(dao.delete(bno));
 	}
 	
+	@Override
+	public List<BoardVo> listCri(Criteria cri) {
+		return dao.listCri(cri);
+	}
+	
+	@Override
+	public int totalCount() {
+		return dao.totalCount();
+	}
+	
 	public String getResult(int result) {
 		String msg = "FAIL";
 		if (result > 0) msg = "SUCCESS";
 		return msg;
 	}
-	
+
 }

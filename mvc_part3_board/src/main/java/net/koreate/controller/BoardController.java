@@ -15,6 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import lombok.extern.slf4j.Slf4j;
 import net.koreate.service.BoardService;
 import net.koreate.vo.BoardVo;
+import net.koreate.vo.Criteria;
+import net.koreate.vo.PageMaker;
 
 @Controller
 @RequestMapping("/board/*")
@@ -72,6 +74,26 @@ public class BoardController {
 		String msg = service.remove(bno);
 		rttr.addFlashAttribute("result", msg);
 		return "redirect:/board/listAll";
+	}
+	
+	@GetMapping("/listCri")
+	public String listCri(Criteria cri, Model model) {
+		log.info("get listCri called!!! " + cri);
+		model.addAttribute("boardList", service.listCri(cri));
+		return "board/listAll";
+	}
+	
+	@GetMapping("/listPage")
+	public void listPage(Criteria cri, Model model) {
+		log.info("get listPage called!!! " + cri);
+		List<BoardVo> boardList = service.listCri(cri);
+		model.addAttribute("boardList", boardList);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.totalCount());
+		log.info("pageMaker : " + pageMaker);
+		model.addAttribute(pageMaker);
 	}
 	
 }

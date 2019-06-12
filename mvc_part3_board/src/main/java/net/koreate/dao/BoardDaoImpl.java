@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import net.koreate.vo.BoardVo;
+import net.koreate.vo.Criteria;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -46,6 +47,16 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public int delete(int bno) {
 		return session.delete(namespase + ".delete", bno);
+	}
+
+	@Override
+	public List<BoardVo> listCri(Criteria cri) {
+		return session.selectList(namespase + ".listCri", cri);
+	}
+	
+	@Override
+	public int totalCount() {
+		return session.selectOne(namespase + ".totalCount");
 	}
 	
 }

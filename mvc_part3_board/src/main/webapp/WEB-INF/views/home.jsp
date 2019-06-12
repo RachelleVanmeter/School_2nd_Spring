@@ -22,6 +22,8 @@
 							</div>
 							<a href="/board/register" class="btn btn-info">글쓰기</a>
 							<a href="/board/listAll" class="btn btn-info">전체 게시물 조회</a>
+							<a href="/board/listCri" class="btn btn-info">전체 게시물 조회 CRI</a>
+							<a href="/board/listPage" class="btn btn-info">전체 게시물 조회 Paging</a>
 						</div>
 					</div>
 				</div>

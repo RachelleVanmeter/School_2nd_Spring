@@ -4,6 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<package name="net.koreate.vo" />
+		<typeAlias alias="boardVo" type="net.koreate.vo.BoardVo"/>
+		<typeAlias alias="criteria" type="net.koreate.vo.Criteria"/>
 	</typeAliases>
 </configuration>
