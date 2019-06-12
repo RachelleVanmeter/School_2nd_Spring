@@ -45,8 +45,7 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public int delete(int bno) {
-		// TODO Auto-generated method stub
-		return 0;
+		return session.delete(namespase + ".delete", bno);
 	}
 	
 }

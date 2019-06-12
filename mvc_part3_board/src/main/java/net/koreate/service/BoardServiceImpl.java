@@ -42,7 +42,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public String remove(int bno) {
-		return null;
+		return getResult(dao.delete(bno));
 	}
 	
 	public String getResult(int result) {

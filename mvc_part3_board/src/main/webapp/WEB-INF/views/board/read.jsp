@@ -44,20 +44,26 @@
 								</form>
 							</div>
 							<script type="text/javascript">
-								var readForm = $('.readForm');
+								var readForm = $('#readForm');
+								var msg = '${result}';
 								
-								$('.btn-warning').click(function() {
-									readForm.attr('action', '/board/modify');
-									readForm.attr('method', 'get');
-									readForm.submit();
-								});
+								if (msg == 'SUCCESS') alert('작업 완료');
+								if (msg == 'FAIL') alert('작업 실패');
 								
-								$('.btn-danger').click(function() {
-									readForm.attr('action', '/board/delete').submit();
-								});
-								
-								$('.btn-primary').click(function() {
-									location.href = '/board/listAll';
+								$(function() {
+									$('.btn-warning').click(function() {
+										readForm.attr('action', '/board/modify');
+										readForm.attr('method', 'get');
+										readForm.submit();
+									});
+									
+									$('.btn-danger').click(function() {
+										readForm.attr('action', '/board/delete').submit();
+									});
+									
+									$('.btn-primary').click(function() {
+										location.href = '/board/listAll';
+									});
 								});
 							</script>
 						</div>

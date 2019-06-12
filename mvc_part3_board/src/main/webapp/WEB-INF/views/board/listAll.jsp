@@ -44,9 +44,12 @@
 										</c:forEach>
 									</tbody>
 								</table>
-							</div>
-							<div class="box-footer">
-								
+								<script type="text/javascript">
+									var msg = '${result}';
+									
+									if (msg == 'SUCCESS') alert('작업 완료');
+									if (msg == 'FAIL') alert('작업 실패');
+								</script>
 							</div>
 						</div>
 					</div>

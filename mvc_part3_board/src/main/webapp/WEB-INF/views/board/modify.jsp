@@ -21,21 +21,21 @@
 							<div class="box-header with-border">
 								<h3 class="box-title">MODIFY BOARD</h3>
 							</div>
-							<form method="post">
+							<form method="post" autocomplete="off">
 								<input type="hidden" name="bno" value="${board.bno}">
 								<div class="box-body">
-										<div class="form-group">
-											<label>TITLE</label>
-											<input class="form-control" type="text" name="title" value="${board.title}">
-										</div>
-										<div class="form-group">
-											<label>CONTENT</label>
-											<textarea class="form-control" name="content" rows="4">${board.content}</textarea>
-										</div>
-										<div class="form-group">
-											<label>WRITER</label>
-											<input class="form-control" type="text" name="writer" value="${board.writer}">
-										</div>
+									<div class="form-group">
+										<label>TITLE</label>
+										<input class="form-control" type="text" name="title" value="${board.title}">
+									</div>
+									<div class="form-group">
+										<label>CONTENT</label>
+										<textarea class="form-control" name="content" rows="4">${board.content}</textarea>
+									</div>
+									<div class="form-group">
+										<label>WRITER</label>
+										<input class="form-control" type="text" name="writer" value="${board.writer}">
+									</div>
 								</div>
 								<div class="box-footer">
 									<input type="submit" class="btn btn-warning" value="MODIFY">

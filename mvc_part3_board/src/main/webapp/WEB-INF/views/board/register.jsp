@@ -21,7 +21,7 @@
 							<div class="box-header with-border">
 								<h3 class="box-title">REGISTER BOARD</h3>
 							</div>
-							<form method="post">
+							<form method="post" autocomplete="off">
 								<div class="box-body">
 									<div class="form-group">
 										<label>TITLE</label>

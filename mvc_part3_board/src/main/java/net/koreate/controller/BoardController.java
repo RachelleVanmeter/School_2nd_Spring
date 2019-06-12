@@ -30,12 +30,13 @@ public class BoardController {
 	}
 	
 	@PostMapping("/register")
-	public String register(BoardVo board) {
+	public String register(BoardVo board, RedirectAttributes rttr) {
 		log.info("post register called!!!");
 		log.info("BoardVo : " + board);
 		String msg = service.register(board);
 		System.out.println(msg);
-		return "home";
+		rttr.addFlashAttribute("result", msg);
+		return "redirect:/board/listAll";
 	}
 	
 	@GetMapping("/listAll")
@@ -63,6 +64,14 @@ public class BoardController {
 		String msg = service.modify(board);
 		rttr.addFlashAttribute("result", msg);
 		return "redirect:/board/read?bno=" + board.getBno();
+	}
+	
+	@PostMapping("/delete")
+	public String delete(@RequestParam("bno") int bno, RedirectAttributes rttr) {
+		log.info("get delete called!!! " + bno);
+		String msg = service.remove(bno);
+		rttr.addFlashAttribute("result", msg);
+		return "redirect:/board/listAll";
 	}
 	
 }

@@ -8,14 +8,16 @@
 		VALUES(#{title}, #{content}, #{writer})
 	</insert>
 	<select id="listAll" resultType="BoardVo">
-		SELECT * FROM tbl_board
-		ORDER BY bno DESC
+		SELECT * FROM tbl_board ORDER BY bno DESC
 	</select>
 	<select id="read" parameterType="int" resultType="BoardVo">
 		SELECT * FROM tbl_board WHERE bno = #{bno}
 	</select>
-	<update id="update">
+	<update id="update" parameterType="BoardVo">
 		UPDATE tbl_board SET title = #{title}, content = #{content}, writer = #{writer}
 		WHERE bno = #{bno}
 	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM tbl_board WHERE bno = #{bno}
+	</delete>
 </mapper>
