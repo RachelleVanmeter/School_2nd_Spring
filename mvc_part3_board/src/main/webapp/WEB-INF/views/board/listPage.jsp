@@ -9,7 +9,7 @@
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
 					<li><a href="#">Board</a></li>
-					<li class="active">List All</li>
+					<li class="active">List Page</li>
 				</ol>
 			</section>
 			
@@ -45,10 +45,14 @@
 									</tbody>
 								</table>
 								<script type="text/javascript">
-									var msg = '${result}';
-									
+								check('${result}');
+								history.replaceState({}, null, null);
+								
+								function check(msg) {
+									if (msg != null || history.state) return;
 									if (msg == 'SUCCESS') alert('작업 완료');
-									if (msg == 'FAIL') alert('작업 실패');
+									else alert('작업 실패');
+								}
 								</script>
 							</div>
 							<div class="box-footer">

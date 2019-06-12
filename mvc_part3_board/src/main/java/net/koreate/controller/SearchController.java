@@ -5,10 +5,10 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.extern.slf4j.Slf4j;
 import net.koreate.service.BoardService;
+import net.koreate.vo.SearchCriteria;
 
 @Controller
 @RequestMapping("/sboard/*")
@@ -19,9 +19,8 @@ public class SearchController {
 	BoardService service;
 	
 	@GetMapping("/list")
-	public String list(@RequestParam(name = "searchType", required = false) String searchType,
-			@RequestParam(name = "keyword", required = false) String keyword) {
-		log.info("get list call!!! " + searchType + " / " + keyword);
+	public String list(SearchCriteria cri) {
+		log.info("get list call!!! " + cri);
 		return "sboard/listPage";
 	}
 }

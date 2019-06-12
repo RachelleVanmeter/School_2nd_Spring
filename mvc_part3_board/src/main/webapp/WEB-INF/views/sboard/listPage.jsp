@@ -8,8 +8,8 @@
 				<h1>KOREATE PROJECTS <small>홈페이지에 오시걸 환영합니다.</small></h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li><a href="#">Board</a></li>
-					<li class="active">List All</li>
+					<li><a href="#">Search Board</a></li>
+					<li class="active">List Page</li>
 				</ol>
 			</section>
 			
@@ -32,12 +32,12 @@
 									<option value="tcw">TITLE & CONTENT & WRITER</option>
 								</select>
 							</div>
-							<div class="con-lg-3">
+							<div class="col-lg-3">
 								<input id="keyword" type="text" name="keyword" class="form-control">
 							</div>
 							<div>
-								<input id="searchBtn" type="button" class="btn btn-primary" value="SEARCH">
-								<input id="newBtn" type="button" class="btn btn-primary" value="NEW BOARD">
+								<input id="searchBtn" type="button" class="btn btn-warning" value="SEARCH"/>
+								<input id="newBtn" type="button" class="btn btn-primary" value="NEW BOARD"/>
 								<script type="text/javascript">
 									$(function() {
 										$('#searchBtn').click(function() {
@@ -76,25 +76,29 @@
 									</tbody>
 								</table>
 								<script type="text/javascript">
-									var msg = '${result}';
+									check('${result}');
+									history.replaceState({}, null, null);
 									
-									if (msg == 'SUCCESS') alert('작업 완료');
-									if (msg == 'FAIL') alert('작업 실패');
+									function check(msg) {
+										if (msg != null || history.state) return;
+										if (msg == 'SUCCESS') alert('작업 완료');
+										else alert('작업 실패');
+									}
 								</script>
 							</div>
 							<div class="box-footer">
 								<div class="text-center">
 									<ul class="pagination">
 									<c:if test="${pageMaker.prev}">
-										<li><a href="/board/listPage?page=${pageMaker.startPage - 1}">&laquo;</a></li>
+										<li><a href="/sboard/listPage?page=${pageMaker.startPage - 1}">&laquo;</a></li>
 									</c:if>
 									<c:forEach var="i" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
 										<li ${pageMaker.cri.page == i ? 'class=active' : ''}>
-											<a href="/board/listPage?page=${i}">${i}</a>
+											<a href="/sboard/listPage?page=${i}">${i}</a>
 										</li>
 									</c:forEach>
 									<c:if test="${pageMaker.next}">
-										<li><a href="/board/listPage?page=${pageMaker.endPage + 1}">&raquo;</a></li>
+										<li><a href="/sboard/listPage?page=${pageMaker.endPage + 1}">&raquo;</a></li>
 									</c:if>
 									</ul>
 								</div>

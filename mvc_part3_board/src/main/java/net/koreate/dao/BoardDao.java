@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.koreate.vo.BoardVo;
 import net.koreate.vo.Criteria;
+import net.koreate.vo.SearchCriteria;
 
 public interface BoardDao {
 	
@@ -15,5 +16,7 @@ public interface BoardDao {
 	int delete(int bno);
 	List<BoardVo> listCri(Criteria cri);
 	int totalCount();
+	int searchListCount(SearchCriteria cri);
+	List<BoardVo> searchList(SearchCriteria cri);
 	
 }

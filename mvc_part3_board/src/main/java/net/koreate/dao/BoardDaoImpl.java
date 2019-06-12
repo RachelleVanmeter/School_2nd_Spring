@@ -9,13 +9,14 @@ import org.springframework.stereotype.Repository;
 
 import net.koreate.vo.BoardVo;
 import net.koreate.vo.Criteria;
+import net.koreate.vo.SearchCriteria;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
-	
+
 	@Inject
 	SqlSession session;
-	
+
 	String namespase = "net.koreate.mappers.BoardMapper";
 
 	@Override
@@ -52,10 +53,20 @@ public class BoardDaoImpl implements BoardDao {
 	public List<BoardVo> listCri(Criteria cri) {
 		return session.selectList(namespase + ".listCri", cri);
 	}
-	
+
 	@Override
 	public int totalCount() {
 		return session.selectOne(namespase + ".totalCount");
 	}
-	
+
+	@Override
+	public int searchListCount(SearchCriteria cri) {
+		return 0;
+	}
+
+	@Override
+	public List<BoardVo> searchList(SearchCriteria cri) {
+		return null;
+	}
+
 }
