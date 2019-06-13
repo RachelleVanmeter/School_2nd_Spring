@@ -6,5 +6,6 @@
 	<typeAliases>
 		<typeAlias alias="boardVo" type="net.koreate.vo.BoardVo"/>
 		<typeAlias alias="criteria" type="net.koreate.vo.Criteria"/>
+		<typeAlias alias="sCriteria" type="net.koreate.vo.SearchCriteria"/>
 	</typeAliases>
 </configuration>

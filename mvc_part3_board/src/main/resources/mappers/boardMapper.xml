@@ -30,4 +30,41 @@
 		UPDATE tbl_board SET viewcnt = viewcnt + 1
 		WHERE bno = #{bno}
 	</update>
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				WHERE title LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				WHERE content LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'w'.toString()">
+				WHERE writer LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				WHERE (title LIKE CONCAT('%', #{keyword}, '%')
+				OR content LIKE CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'cw'.toString()">
+				WHERE (content LIKE CONCAT('%', #{keyword}, '%')
+				OR writer LIKE CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'tcw'.toString()">
+				WHERE (title LIKE CONCAT('%', #{keyword}, '%')
+				OR content LIKE CONCAT('%', #{keyword}, '%')
+				OR writer LIKE CONCAT('%', #{keyword}, '%'))
+			</if>
+		</if>
+	</sql>
+	
+	<select id="listSearch" parameterType="sCriteria" resultType="BoardVo">
+		SELECT * FROM tbl_board
+		<include refid="search" />
+		ORDER BY bno DESC LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	<select id="searchListCount" parameterType="sCriteria" resultType="int">
+		SELECT COUNT(*) FROM tbl_board
+		<include refid="search" />
+	</select>
 </mapper>

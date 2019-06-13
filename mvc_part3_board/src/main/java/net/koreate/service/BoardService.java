@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.koreate.vo.BoardVo;
 import net.koreate.vo.Criteria;
+import net.koreate.vo.PageMaker;
 import net.koreate.vo.SearchCriteria;
 
 public interface BoardService {
@@ -18,5 +19,6 @@ public interface BoardService {
 	int totalCount();
 	int searchListCount(SearchCriteria cri);
 	List<BoardVo> searchList(SearchCriteria cri);
+	PageMaker getPageMaker(SearchCriteria cri);
 	
 }

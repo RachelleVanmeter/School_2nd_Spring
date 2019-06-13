@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import net.koreate.dao.BoardDao;
 import net.koreate.vo.BoardVo;
 import net.koreate.vo.Criteria;
+import net.koreate.vo.PageMaker;
 import net.koreate.vo.SearchCriteria;
 
 @Service
@@ -64,7 +65,16 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardVo> searchList(SearchCriteria cri) {
-		return null;
+		return dao.searchList(cri);
+	}
+
+	@Override
+	public PageMaker getPageMaker(SearchCriteria cri) {
+		int totalCount = dao.searchListCount(cri);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+		return pageMaker;
 	}
 	
 	public String getResult(int result) {
