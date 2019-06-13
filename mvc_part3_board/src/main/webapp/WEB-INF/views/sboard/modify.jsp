@@ -8,7 +8,7 @@
 				<h1>KOREATE PROJECTS <small>홈페이지에 오시걸 환영합니다.</small></h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li><a href="#">Board</a></li>
+					<li><a href="#">Search Board</a></li>
 					<li class="active">MODIFY</li>
 				</ol>
 			</section>
@@ -21,9 +21,12 @@
 							<div class="box-header with-border">
 								<h3 class="box-title">MODIFY BOARD</h3>
 							</div>
-							<form method="post" autocomplete="off">
+							<form action="/sboard/modifyPage" method="post" autocomplete="off">
 								<input type="hidden" name="bno" value="${board.bno}">
-								<input type="hidden" name="page" value="${page}">
+								<input type="hidden" name="page" value="${cri.page}">
+								<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
+								<input type="hidden" name="searchType" value="${cri.searchType}">
+								<input type="hidden" name="keyword" value="${cri.keyword}">
 								<div class="box-body">
 									<div class="form-group">
 										<label>TITLE</label>
