@@ -2,8 +2,8 @@ package net.koreate.vo;
 
 public class SearchCriteria extends Criteria {
 
-	private String searchType;
-	private String Keyword;
+	String searchType;
+	String Keyword;
 
 	public String getSearchType() {
 		return searchType;

@@ -8,13 +8,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 public class PageMaker {
 
-	private int totalCount; // 전체 데이터 개수
-	private int startPage; // 시작 페이지
-	private int endPage; // 마지막 페이지
-	private boolean prev; // 이전페이지 존재 여부
-	private boolean next; // 다음페이지 존재 여부
-	private int displayPageNum = 10; // 한번에 보여줄 페이지 개수
-	private Criteria cri; // 페이지 정보
+	int totalCount; // 전체 데이터 개수
+	int startPage; // 시작 페이지
+	int endPage; // 마지막 페이지
+	boolean prev; // 이전페이지 존재 여부
+	boolean next; // 다음페이지 존재 여부
+	int displayPageNum = 10; // 한번에 보여줄 페이지 개수
+	Criteria cri; // 페이지 정보
 
 	public void calData() {
 		endPage = (int) Math.ceil(cri.getPage() / (double) displayPageNum) * displayPageNum;
