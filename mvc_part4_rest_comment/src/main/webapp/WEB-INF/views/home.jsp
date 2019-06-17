@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>
-	 <a href="test">comment test</a>
+	 <a href="/test">comment test</a>
 </h1>
 </body>
 </html>
