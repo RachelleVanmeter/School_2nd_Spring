@@ -8,7 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import net.koreate.comment.dao.CommentDao;
-import net.koreate.comment.vo.CommentVO;
+import net.koreate.comment.vo.CommentVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -23,7 +23,7 @@ public class MapperFactoryTest {
 	@Test
 	public void testSqlSession() throws Exception {
 		System.out.println(dao);
-		CommentVO comment = new CommentVO();
+		CommentVo comment = new CommentVo();
 		comment.setBno(1);
 		comment.setCommentText("첫번째 댓글");
 		comment.setCommentAuth("최기근");

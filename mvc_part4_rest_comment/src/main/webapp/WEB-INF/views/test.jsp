@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Comment Test</title>
-<link href="${pageContext.request.contextPath}/resources/comment.css" rel="stylesheet" type="text/css" />
+<link href="/resources/comment.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<div id="modDiv" style="display:none;">
@@ -34,7 +34,7 @@
 	<ul id="pagination" class="pagination">
 	</ul>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/comment.js"></script>
+<script src="/resources/comment.js"></script>
 </body>
 </html>
 

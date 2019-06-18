@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.koreate.comment.service.CommentService;
-import net.koreate.comment.vo.CommentVO;
+import net.koreate.comment.vo.CommentVo;
 import net.koreate.comment.vo.Criteria;
 import net.koreate.comment.vo.PageMaker;
 
@@ -30,10 +30,10 @@ public class CommentController {
 	CommentService cs;
 
 	@PostMapping("")
-	public ResponseEntity<String> register(@RequestBody CommentVO comment) {
+	public ResponseEntity<String> register(@RequestBody CommentVo comment) {
 		ResponseEntity<String> entity = null;
 		System.out.println("comments 요청 : " + comment);
-		
+
 		try {
 			cs.addComment(comment);
 			entity = new ResponseEntity<>("SUCCESS", HttpStatus.OK);
@@ -45,13 +45,13 @@ public class CommentController {
 	}
 
 	@GetMapping("/all/{bno}")
-	public ResponseEntity<List<CommentVO>> list(@PathVariable("bno") int bno) {
+	public ResponseEntity<List<CommentVo>> list(@PathVariable("bno") int bno) {
 		System.out.println("list bno : " + bno);
-		ResponseEntity<List<CommentVO>> entity = null;
+		ResponseEntity<List<CommentVo>> entity = null;
 
 		try {
-			List<CommentVO> list = cs.commentList(bno);
-			entity = new ResponseEntity<List<CommentVO>>(list, HttpStatus.OK);
+			List<CommentVo> list = cs.commentList(bno);
+			entity = new ResponseEntity<List<CommentVo>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -61,9 +61,9 @@ public class CommentController {
 	}
 
 	@PatchMapping("/{cno}")
-	public ResponseEntity<String> update(@PathVariable("cno") int cno, @RequestBody CommentVO comment) {
+	public ResponseEntity<String> update(@PathVariable("cno") int cno, @RequestBody CommentVo comment) {
 		ResponseEntity<String> entity = null;
-		
+
 		try {
 			comment.setCno(cno);
 			System.out.println(comment);
@@ -92,7 +92,8 @@ public class CommentController {
 	}
 
 	@GetMapping("/{bno}/{page}")
-	public ResponseEntity<Map<String, Object>> listPage(@PathVariable("bno") int bno, @PathVariable("page") int page) {
+	public ResponseEntity<Map<String, Object>> listPage(@PathVariable("bno") int bno,
+			@PathVariable("page") int page) {
 		ResponseEntity<Map<String, Object>> entity = null;
 
 		try {
@@ -101,7 +102,7 @@ public class CommentController {
 			Criteria cri = new Criteria();
 			cri.setPage(page);
 			cri.setPerPageNum(20);
-			List<CommentVO> list = cs.commentListPage(bno, cri);
+			List<CommentVo> list = cs.commentListPage(bno, cri);
 			map.put("pageMaker", pageMaker);
 			map.put("list", list);
 			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);

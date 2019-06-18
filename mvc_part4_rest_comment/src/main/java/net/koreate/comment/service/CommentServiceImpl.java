@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import net.koreate.comment.dao.CommentDao;
-import net.koreate.comment.vo.CommentVO;
+import net.koreate.comment.vo.CommentVo;
 import net.koreate.comment.vo.Criteria;
 import net.koreate.comment.vo.PageMaker;
 
@@ -20,17 +20,17 @@ public class CommentServiceImpl implements CommentService {
 	CommentDao dao;
 
 	@Override
-	public void addComment(CommentVO vo) throws Exception {
+	public void addComment(CommentVo vo) throws Exception {
 		dao.addComment(vo);
 	}
 
 	@Override
-	public List<CommentVO> commentList(int bno) throws Exception {
+	public List<CommentVo> commentList(int bno) throws Exception {
 		return dao.list(bno);
 	}
 
 	@Override
-	public void modifyComment(CommentVO vo) throws Exception {
+	public void modifyComment(CommentVo vo) throws Exception {
 		dao.update(vo);
 	}
 
@@ -54,7 +54,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public List<CommentVO> commentListPage(int bno, Criteria cri) throws Exception {
+	public List<CommentVo> commentListPage(int bno, Criteria cri) throws Exception {
 		Map<String, Object> map = new HashMap<>();
 		map.put("bno", bno);
 		map.put("cri", cri);

@@ -2,7 +2,7 @@ package net.koreate.comment.vo;
 
 import java.util.Date;
 
-public class CommentVO {
+public class CommentVo {
 
 	private int cno;
 	private int bno;

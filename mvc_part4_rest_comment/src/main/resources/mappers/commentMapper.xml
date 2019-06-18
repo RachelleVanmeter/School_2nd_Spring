@@ -2,9 +2,9 @@
 <!DOCTYPE mapper 
 PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="net.koreate.comment.dao.CommentDAO">
+<mapper namespace="net.koreate.comment.dao.CommentDao">
 	
-	<insert id="addComment" parameterType="net.koreate.comment.vo.CommentVO">
+	<insert id="addComment" parameterType="net.koreate.comment.vo.CommentVo">
 		INSERT INTO tbl_comment(bno,commentText,commentAuth) 
 		VALUES(#{bno},#{commentText},#{commentAuth})		
 	</insert>
