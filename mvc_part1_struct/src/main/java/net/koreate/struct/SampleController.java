@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Component
 @Service
 @Repository
-
 */
 @Controller
 public class SampleController {
@@ -22,5 +21,5 @@ public class SampleController {
 		System.out.println("doB");
 		return "home";
 	}
-	
+
 }

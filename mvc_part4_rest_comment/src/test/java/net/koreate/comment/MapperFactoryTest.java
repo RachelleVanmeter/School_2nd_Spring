@@ -7,21 +7,21 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import net.koreate.comment.dao.CommentDAO;
+import net.koreate.comment.dao.CommentDao;
 import net.koreate.comment.vo.CommentVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations= {
-		"file:src/main/resources/context/root-context.xml"
+@ContextConfiguration(locations = {
+	/* "file:src/main/resources/context/root-context.xml" */
+	"classpath:context/root-context.xml"
 })
 public class MapperFactoryTest {
-	
-	
+
 	@Inject
-	CommentDAO dao;
-	
+	CommentDao dao;
+
 	@Test
-	public void testSqlSession() {
+	public void testSqlSession() throws Exception {
 		System.out.println(dao);
 		CommentVO comment = new CommentVO();
 		comment.setBno(1);
@@ -30,11 +30,3 @@ public class MapperFactoryTest {
 		dao.addComment(comment);
 	}
 }
-
-
-
-
-
-
-
-

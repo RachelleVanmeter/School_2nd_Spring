@@ -8,7 +8,7 @@ import net.koreate.vo.PageMaker;
 import net.koreate.vo.SearchCriteria;
 
 public interface BoardService {
-	
+
 	String register(BoardVo board);
 	List<BoardVo> listAll();
 	BoardVo read(int bno);
@@ -20,5 +20,5 @@ public interface BoardService {
 	int searchListCount(SearchCriteria cri);
 	List<BoardVo> searchList(SearchCriteria cri);
 	PageMaker getPageMaker(SearchCriteria cri);
-	
+
 }

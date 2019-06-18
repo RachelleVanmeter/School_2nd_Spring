@@ -1,4 +1,4 @@
-package net.koreate.vo;
+package net.koreate.db.vo;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

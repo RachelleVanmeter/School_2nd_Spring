@@ -9,12 +9,12 @@ import net.koreate.db.vo.MemberVo;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
-	
+
 	@Inject
 	private SqlSession session;
-	
+
 	private String nameSpace = "net.koreate.mappers.MemberMapper";
-	
+
 	@Override
 	public MemberVo readMember(String userId) {
 		return session.selectOne(nameSpace + ".readMember", userId);

@@ -23,15 +23,15 @@ import net.koreate.vo.PageMaker;
 @RequestMapping("/board/*")
 @Slf4j
 public class BoardController {
-	
+
 	@Inject
 	BoardService service;
-	
+
 	@GetMapping("/register")
 	public void register() {
 		log.info("get register called!!!");
 	}
-	
+
 	@PostMapping("/register")
 	public String register(BoardVo board, RedirectAttributes rttr) {
 		log.info("post register called!!!");
@@ -41,26 +41,26 @@ public class BoardController {
 		rttr.addFlashAttribute("result", msg);
 		return "redirect:/board/listAll";
 	}
-	
+
 	@GetMapping("/listAll")
 	public void listAll(Model model) {
 		log.info("get listAll called!!!");
 		List<BoardVo> list = service.listAll();
 		model.addAttribute("boardList", list);
 	}
-	
+
 	@GetMapping("/read")
 	public void read(@RequestParam("bno") int bno, Model model) {
 		log.info("get read called!!! " + bno);
 		model.addAttribute("board", service.read(bno));
 	}
-	
+
 	@GetMapping("/modify")
 	public void modify(@RequestParam("bno") int bno, Model model) {
 		log.info("get modify called!!! " + bno);
 		model.addAttribute("board", service.read(bno));
 	}
-	
+
 	@PostMapping("/modify")
 	public String modify(BoardVo board, @ModelAttribute("page") int page, RedirectAttributes rttr) {
 		log.info("post modify called!!! " + board);
@@ -68,49 +68,52 @@ public class BoardController {
 		rttr.addFlashAttribute("result", msg);
 		return "redirect:/board/readDetail?bno=" + board.getBno() + "&page=" + page;
 	}
-	
+
 	@PostMapping("/delete")
-	public String delete(@RequestParam("bno") int bno, @ModelAttribute("page") int page, RedirectAttributes rttr) {
+	public String delete(@RequestParam("bno") int bno, @ModelAttribute("page") int page,
+			RedirectAttributes rttr) {
 		log.info("get delete called!!! " + bno);
 		String msg = service.remove(bno);
 		rttr.addFlashAttribute("result", msg);
 		return "redirect:/board/listPage?page=" + page;
 	}
-	
+
 	@GetMapping("/listCri")
 	public String listCri(Criteria cri, Model model) {
 		log.info("get listCri called!!! " + cri);
 		model.addAttribute("boardList", service.listCri(cri));
 		return "board/listAll";
 	}
-	
+
 	@GetMapping("/listPage")
 	public void listPage(Criteria cri, Model model) {
 		log.info("get listPage called!!! " + cri);
 		List<BoardVo> boardList = service.listCri(cri);
 		model.addAttribute("boardList", boardList);
-		
+
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.totalCount());
 		log.info("pageMaker : " + pageMaker);
 		model.addAttribute(pageMaker);
 	}
-	
+
 	@GetMapping("/readPage")
-	public String readPage(@RequestParam("bno") int bno, @RequestParam("page") int page, RedirectAttributes rttr) {
+	public String readPage(@RequestParam("bno") int bno, @RequestParam("page") int page,
+			RedirectAttributes rttr) {
 		log.info("get readPage called!!! " + bno);
 		service.updateViewCnt(bno);
 		rttr.addAttribute("bno", bno);
 		rttr.addAttribute("page", page);
 		return "redirect:/board/readDetail";
 	}
-	
+
 	@GetMapping("/readDetail")
-	public String readDetail(@ModelAttribute("bno") int bno, @ModelAttribute("page") int page, Model model) {
+	public String readDetail(@ModelAttribute("bno") int bno, @ModelAttribute("page") int page,
+			Model model) {
 		log.info("get readDetail called!!! " + bno);
 		model.addAttribute("board", service.read(bno));
 		return "/board/readPage";
 	}
-	
+
 }

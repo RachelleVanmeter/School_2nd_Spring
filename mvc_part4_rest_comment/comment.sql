@@ -8,3 +8,6 @@ CREATE TABLE tbl_comment(
 );
 
 SELECT * FROM tbl_comment;
+
+INSERT INTO tbl_comment(bno,commentText,commentAuth) 
+SELECT bno,commentText,commentAuth FROM tbl_comment; 

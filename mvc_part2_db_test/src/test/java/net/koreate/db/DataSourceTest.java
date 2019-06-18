@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-		"file:src/main/webapp/WEB-INF/spring/**/root-context.xml"
+	"file:src/main/webapp/WEB-INF/spring/**/root-context.xml"
 })
 public class DataSourceTest {
 
@@ -31,7 +31,10 @@ public class DataSourceTest {
 			e.printStackTrace();
 			System.out.println("연결정보");
 		} finally {
-			try { conn.close(); } catch (SQLException e) {}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+			}
 		}
 	}
 

@@ -1,4 +1,4 @@
-package net.koreate.vo;
+package net.koreate.db.vo;
 
 public class SearchCriteria extends Criteria {
 

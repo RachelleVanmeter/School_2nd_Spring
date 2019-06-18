@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import org.junit.Test;
 
 public class MysqlTest {
-	
+
 	String driver = "com.mysql.cj.jdbc.Driver";
-	String url ="jdbc:mysql://localhost:3306/mydata?serverTimezone=Asia/Seoul";
+	String url = "jdbc:mysql://localhost:3306/mydata?serverTimezone=Asia/Seoul";
 	String username = "java";
 	String password = "java";
-	
+
 	@Test
 	public void testConnection() {
 		System.out.println("connection test");
@@ -31,6 +31,3 @@ public class MysqlTest {
 		}
 	}
 }
-
-
-

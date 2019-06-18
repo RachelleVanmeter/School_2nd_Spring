@@ -14,10 +14,10 @@ import net.koreate.vo.SearchCriteria;
 
 @Service
 public class BoardServiceImpl implements BoardService {
-	
+
 	@Inject
 	BoardDao dao;
-	
+
 	@Override
 	public String register(BoardVo board) {
 		return getResult(dao.create(board));
@@ -47,17 +47,17 @@ public class BoardServiceImpl implements BoardService {
 	public String remove(int bno) {
 		return getResult(dao.delete(bno));
 	}
-	
+
 	@Override
 	public List<BoardVo> listCri(Criteria cri) {
 		return dao.listCri(cri);
 	}
-	
+
 	@Override
 	public int totalCount() {
 		return dao.totalCount();
 	}
-	
+
 	@Override
 	public int searchListCount(SearchCriteria cri) {
 		return 0;
@@ -76,7 +76,7 @@ public class BoardServiceImpl implements BoardService {
 		pageMaker.setTotalCount(totalCount);
 		return pageMaker;
 	}
-	
+
 	public String getResult(int result) {
 		String msg = "FAIL";
 		if (result > 0) msg = "SUCCESS";

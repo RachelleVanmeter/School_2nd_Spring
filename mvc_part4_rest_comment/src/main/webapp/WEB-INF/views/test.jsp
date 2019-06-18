@@ -1,24 +1,47 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript" src="http://code.jqurey.com/latest-min.js"></script>
+<title>Comment Test</title>
+<link href="${pageContext.request.contextPath}/resources/comment.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<div>
-		commentAuth <input type="text" id="newCommentAuth">
+	<div id="modDiv" style="display:none;">
+		<div class="mod-title"></div>	
+		<div>
+			<input type="text" id="commentText"/>
+		</div>
+		<div>
+			<button id="commentModBtn">MODIFY</button>
+			<button id="commentDelBtn">DELETE</button>
+			<button id="closeBtn">CLOSE</button>
+		</div>
 	</div>
+	<h1>AJAX-REST TEST PAGE</h1>
 	<div>
-		commentText <input type="text"  id="newCommentText">
+		<div>
+			commentAuth <input type="text" id="newCommentAuth"/>
+		</div>
+		<div>
+			commentText <input type="text" id="newCommentText"/>
+		</div>
+		<button id="commentAddBtn">ADD COMMENT</button>
+		<button id="commentListBtn">List ALL</button>
 	</div>
-	<button id="commentAddBtn">ADD COMMENT</button>
-	<button id="commentListBtn">LIST ALL</button>
 	<ul id="comments"></ul>
-	<script type="text/javascript">
-		
-	</script>
+	<ul id="pagination" class="pagination">
+	</ul>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/comment.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+

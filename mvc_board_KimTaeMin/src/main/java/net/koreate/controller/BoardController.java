@@ -20,15 +20,15 @@ import net.koreate.vo.PageMaker;
 @RequestMapping("/board/*")
 @Slf4j
 public class BoardController {
-	
+
 	@Inject
 	BoardService service;
-	
+
 	@GetMapping("/register")
 	public void register() {
 		log.info("get register call!!!");
 	}
-	
+
 	@PostMapping("/register")
 	public String register(BoardVo board, RedirectAttributes rttr) {
 		log.info("post register call!!!");
@@ -36,7 +36,7 @@ public class BoardController {
 		rttr.addFlashAttribute("result", msg);
 		return "redirect:/board/listPage";
 	}
-	
+
 	@GetMapping("/listPage")
 	public void listPage(Criteria cri, Model model) {
 		log.info("get listPage call!!! " + cri);
@@ -45,7 +45,7 @@ public class BoardController {
 		PageMaker pageMaker = service.getPageMaker(cri);
 		model.addAttribute("pageMaker", pageMaker);
 	}
-	
+
 	@GetMapping("/readPage")
 	public String readPage(int bno, Criteria cri, RedirectAttributes rttr) {
 		log.info("get readPage call!!! " + cri);
@@ -55,21 +55,21 @@ public class BoardController {
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		return "redirect:/board/readDetail";
 	}
-	
+
 	@GetMapping("/readDetail")
 	public String readDetail(int bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("get readDetail call!!!");
 		model.addAttribute("board", service.readPage(bno));
 		return "board/readPage";
 	}
-	
+
 	@GetMapping("/modifyPage")
 	public String modifyPage(int bno, Model model) {
 		log.info("get modifyPage call!!!");
 		model.addAttribute("board", service.readPage(bno));
 		return "board/modify";
 	}
-	
+
 	@PostMapping("/modifyPage")
 	public String modifyPage(BoardVo board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("post modifyPage call!!!");
@@ -79,7 +79,7 @@ public class BoardController {
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		return "redirect:/board/listPage";
 	}
-	
+
 	@GetMapping("/remove")
 	public String remove(int bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("get delete call!!!");

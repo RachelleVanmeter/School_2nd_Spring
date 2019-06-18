@@ -14,15 +14,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 	"file:src/main/webapp/WEB-INF/spring/**/root-context.xml"
 })
 public class MybatisTest {
-	
+
 	@Inject
 	SqlSessionFactory sqlSessionFactory;
-	
+
 	@Test
 	public void testSessionFactory() {
 		SqlSession session = sqlSessionFactory.openSession();
 		System.out.println("연결정보 생성완료 : " + session);
 		System.out.println("Connection sqlSession : " + session.getConnection());
 	}
-	
+
 }

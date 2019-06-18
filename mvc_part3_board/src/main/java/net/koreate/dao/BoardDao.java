@@ -7,7 +7,7 @@ import net.koreate.vo.Criteria;
 import net.koreate.vo.SearchCriteria;
 
 public interface BoardDao {
-	
+
 	int create(BoardVo board);
 	List<BoardVo> listAll();
 	BoardVo read(int bno);
@@ -18,5 +18,5 @@ public interface BoardDao {
 	int totalCount();
 	int searchListCount(SearchCriteria cri);
 	List<BoardVo> searchList(SearchCriteria cri);
-	
+
 }

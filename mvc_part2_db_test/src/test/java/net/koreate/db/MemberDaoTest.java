@@ -15,10 +15,10 @@ import net.koreate.db.vo.MemberVo;
 	"file:src/main/webapp/WEB-INF/spring/**/root-context.xml"
 })
 public class MemberDaoTest {
-	
+
 	@Inject
 	MemberDao dao;
-	
+
 	public void testInsertTest() {
 		System.out.println("dao instance : " + dao);
 		MemberVo memberVo = new MemberVo();
@@ -27,11 +27,11 @@ public class MemberDaoTest {
 		memberVo.setUsername("김태민");
 		dao.insertMember(memberVo);
 	}
-	
+
 	@Test
 	public void testReadTest() {
 		System.out.println("dao instance : " + dao);
 		System.out.println("readMember : " + dao.readMember("user01"));
 	}
-	
+
 }
