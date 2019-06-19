@@ -4,5 +4,7 @@ PUBLIC "-//mybatis.org//DTD config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
+		<typeAlias alias="userVo" type="net.koreate.vo.UserVo"/>
+		<typeAlias alias="messageVo" type="net.koreate.vo.MessageVo"/>
 	</typeAliases>
 </configuration>

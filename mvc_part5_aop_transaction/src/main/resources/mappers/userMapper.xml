@@ -4,5 +4,8 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="net.koreate.dao.UserDao">
-	
+	<update id="updatePoint" parameterType="userVo">
+		UPDATE tbl_user SET upoint = upoint + #{upoint}
+		WHERE uid = #{uid}
+	</update>
 </mapper>
