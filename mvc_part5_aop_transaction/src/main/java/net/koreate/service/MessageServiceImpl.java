@@ -32,12 +32,20 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public MessageVo readMessage(int mno, String uid) throws Exception {
-		return null;
+		mDao.updateMessage(mno);
+		UserVo user = new UserVo();
+		
+		user.setUid(uid);
+		user.setUpoint(5);
+		uDao.updatePoint(user);
+		
+		MessageVo message = mDao.readMessage(mno);
+		return message;
 	}
 
 	@Override
 	public List<MessageVo> list() throws Exception {
-		return null;
+		return mDao.list();
 	}
 	
 }

@@ -13,5 +13,6 @@
 	<input type="text" id="sender" placeholder="sender"> <br>
 	<textarea rows="4" id="message" placeholder="message"></textarea> <br>
 	<input type="button" id="add" value="MESSAGE 전송">
+	<ul id="messageList"></ul>
 </body>
 </html>
