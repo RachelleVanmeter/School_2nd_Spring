@@ -1,4 +1,4 @@
-package net.koreate.aop;
+package net.koreate.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
