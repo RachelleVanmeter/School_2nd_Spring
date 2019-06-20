@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.koreate.dao.MessageDao;
 import net.koreate.dao.UserDao;
@@ -21,6 +22,7 @@ public class MessageServiceImpl implements MessageService {
 	UserDao uDao;
 
 	@Override
+	@Transactional
 	public void addMessage(MessageVo message) throws Exception {
 		UserVo user = new UserVo();
 		user.setUid(message.getSender());
