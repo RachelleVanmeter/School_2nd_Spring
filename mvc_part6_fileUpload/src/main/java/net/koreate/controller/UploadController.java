@@ -94,6 +94,13 @@ public class UploadController {
 		MultipartFile file1 = request.getFile("file1");
 		List<MultipartFile> fileList = request.getFiles("file");
 		
+		String[] savedName = new String[fileList.size() + 1];
+		for (int i = 0; i < fileList.size(); i++) {
+			MultipartFile file = fileList.get(i);
+			savedName[i] = UploadFileUtils.uploadFile(file.getOriginalFilename(), uploadPath, file.getBytes());
+		}
+		savedName[savedName.length - 1] = UploadFileUtils.uploadFile(file1.getOriginalFilename(), uploadPath, file1.getBytes());
+		model.addAttribute("savedName3", savedName);
 		return "uploadResult";
 	}
 	

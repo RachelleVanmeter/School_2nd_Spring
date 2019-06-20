@@ -29,7 +29,11 @@
 	<br>
 	<hr>
 	<h1>MIX</h1>
-	<h2>AAA</h2>
+	<h2>
+	<c:forEach var="savedName" items="${savedName3}">
+		${savedName} <br>
+	</c:forEach>
+	</h2>
 	<br>
 	<hr>
 </body>
