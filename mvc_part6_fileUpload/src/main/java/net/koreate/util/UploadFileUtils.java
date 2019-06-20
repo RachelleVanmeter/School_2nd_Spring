@@ -106,4 +106,16 @@ public class UploadFileUtils {
 			if(!dirPath.exists()) { dirPath.mkdir(); }
 		}
 	}
+	
+	/**
+	 * DB에서 검색된 이미지 이름을 넘겨 받아 s_를 기준으로 앞뒤를 짜르고 다시 이어서 원본이 보일수 있도록 함
+	 * @param imgName
+	 * @return
+	 */
+	public static String getOriginalImgName(String imgName) {
+		String firstName = imgName.substring(0, imgName.indexOf("s_"));
+		String lastName = imgName.substring(imgName.indexOf("s_") + 2);
+		return firstName + lastName;
+	}
+	
 }
