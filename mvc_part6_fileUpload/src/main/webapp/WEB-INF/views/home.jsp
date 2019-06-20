@@ -6,5 +6,6 @@
 </head>
 <body>
 	<a href="/uploadForm">uploadForm</a>
+	<a href="/uploadAjax">uploadAjax</a>
 </body>
 </html>

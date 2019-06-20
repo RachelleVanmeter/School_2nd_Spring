@@ -36,8 +36,8 @@ public class UploadFileUtils {
 		String formatName = originalName.substring(originalName.lastIndexOf(".") + 1);
 		String uploadFileName = "";
 		
-		if (MediaUtils.getMediaType(formatName) != null) { uploadFileName = makeThumnail(uploadPath, path, savedName); }
-		else { uploadFileName = makeIcon(uploadPath, path, savedName); }
+		if (MediaUtils.getMediaType(formatName) != null) uploadFileName = makeThumnail(uploadPath, path, savedName);
+		else uploadFileName = makeIcon(uploadPath, path, savedName);
 		return uploadFileName;
 	}
 	
@@ -50,8 +50,7 @@ public class UploadFileUtils {
 	 */
 	public static String makeIcon(String uploadPath, String path, String savedName) {
 		String iconName = uploadPath + path + File.separator + savedName;
-		String name = iconName.substring(uploadPath.length()).replace(File.separatorChar, '/');
-		return name;
+		return iconName.substring(uploadPath.length()).replace(File.separatorChar, '/');
 	}
 	
 	/**
@@ -72,9 +71,7 @@ public class UploadFileUtils {
 		
 		String formatName = savedName.substring(savedName.lastIndexOf(".") + 1);
 		ImageIO.write(sourceImg, formatName.toUpperCase(), tumnFile);
-		
-		String name = thumnail.substring(uploadPath.length()).replace(File.separatorChar, '/');
-		return name;
+		return thumnail.substring(uploadPath.length()).replace(File.separatorChar, '/');
 	}
 	
 	/**
@@ -99,11 +96,11 @@ public class UploadFileUtils {
 	 * @param paths
 	 */
 	public static void mkdir(String uploadPath, String... paths) {
-		if(new File(paths[paths.length - 1]).exists()) return;
+		if (new File(paths[paths.length - 1]).exists()) return;
 		
 		for (String path : paths) {
 			File dirPath = new File(uploadPath + path);
-			if(!dirPath.exists()) { dirPath.mkdir(); }
+			if (!dirPath.exists()) dirPath.mkdir();
 		}
 	}
 	

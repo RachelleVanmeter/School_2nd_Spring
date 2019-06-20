@@ -7,10 +7,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -102,6 +104,27 @@ public class UploadController {
 		savedName[savedName.length - 1] = UploadFileUtils.uploadFile(file1.getOriginalFilename(), uploadPath, file1.getBytes());
 		model.addAttribute("savedName3", savedName);
 		return "uploadResult";
+	}
+	
+	@GetMapping("/uploadAjax")
+	public void uploadAjax() {
+		log.info("get uploadAjax view call!!!");
+	}
+	
+	@PostMapping(value = "/uploadAjax", produces = "text/plain;charset=utf-8")
+	@ResponseBody
+	public ResponseEntity<String> uploadAjax(MultipartFile file) {
+		log.info("get uploadAjax view call!!!");
+		ResponseEntity<String> entity = null;
+		log.warn("file Name : " + file.getOriginalFilename());
+		
+		try {
+			
+		} catch (Exception e) {
+			
+		}
+		
+		return entity;
 	}
 	
 }
