@@ -53,37 +53,37 @@
 				processData : false,
 				success : function(data) {
 					console.log(data);
-					/* var str = '';
+					var str = '';
 
-					if(checkImageType(result)) {
+					if(checkImageType(data)) {
 						str = "<div>"
-							+ "<a href='/displayFile?fileName=" + getImageLink(result) + "' target='_blank'>"
-							+ "<img src='/displayFile?fileName=" + result + "'/>"
+							+ "<a href='/displayFile?fileName=" + getImageLink(data) + "' target='_blank'>"
+							+ "<img src='/displayFile?fileName=" + data + "'/>"
 							+ "</a>"
-							+ "<small data-src='" + result + "'>X</small>"
+							+ "<small data-src='" + data + "'>X</small>"
 							+ "</div>";
 					} else {
 						str = "<div>"
-							+ "<a href='/displayFile?fileName=" + result + "'>"
-							+ getOriginalName(result)
+							+ "<a href='/displayFile?fileName=" + data + "'>"
+							+ getOriginalName(data)
 							+ "</a>"
-							+ "<small data-src='" + result + "'>X</small>"
+							+ "<small data-src='" + data + "'>X</small>"
 							+ "</div>";
 					}
-					$(".uploadedList").append(str); */
+					$(".uploadList").append(str);
 				}
 			});
 		});
+		
+		function checkImageType(fileName) {
+			var pattern = /jpg|gif|png|jpeg/i
+			return fileName.match(pattern);
+		}
 		
 		function getOriginalName(fileName) {
 			if(checkImageType(fileName)) return;
 			var idx = fileName.indexOf("_") + 1;
 			return fileName.substr(idx);
-		}
-		
-		function checkImageType(fileName) {
-			var pattern = /jpg|gif|png|jpeg/i
-			return fileName.match(pattern);
 		}
 		
 		function getImageLink(fileName) {
