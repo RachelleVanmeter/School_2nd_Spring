@@ -67,6 +67,7 @@
 								+ "</div>";
 						} else {
 							str = "<div>"
+								+ "<input type='checkbox' id='select' data-src='" + data + "'>"
 								+ "<a href='/displayFile?fileName=" + data + "'>"
 								+ getOriginalName(data)
 								+ "</a>"
