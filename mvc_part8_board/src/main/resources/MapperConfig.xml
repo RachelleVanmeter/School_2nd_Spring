@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC
+	"-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="boardVo" type="net.koreate.vo.BoardVo" />
+		<typeAlias alias="commentVo" type="net.koreate.vo.CommentVo" />
+		<typeAlias alias="memberVo" type="net.koreate.vo.MemberVo" />
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="sql/boardMapper.xml" />
+		<mapper resource="sql/memberMapper.xml" />
+	</mappers>
+</configuration>

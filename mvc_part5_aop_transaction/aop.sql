@@ -1,7 +1,7 @@
 CREATE TABLE tbl_user(
 	uno int primary key auto_increment,
 	uid varchar(50) not null unique,
-	upw varchar(50) not null,
+	upw varchar(500) not null,
 	uname varchar(50) not null,
 	upoint int not null default 0
 );
