@@ -12,6 +12,6 @@ public class CommentVo {
 	private String commentAuth;
 	private Date regdate;
 	private Date updatedate;
-	
+
 	private int uno;
 }

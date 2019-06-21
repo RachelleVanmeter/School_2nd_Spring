@@ -9,7 +9,5 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
-	
-	
-	
+
 }
