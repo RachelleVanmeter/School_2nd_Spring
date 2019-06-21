@@ -10,7 +10,7 @@
 		.fileDrop {
 			width: 100%;
 			height: 200px;
-			border:  1px solid blue;
+			border: 1px solid blue;
 		}
 	</style>
 </head>
@@ -20,7 +20,8 @@
 		
 	</div>
 	<div class="uploadList">
-		
+		<button id="deleteAll">전체 삭제</button>
+		<button id="deleteSelect">선택 삭제</button>
 	</div>
 	<script type="text/javascript">
 		$('.fileDrop').on('dragenter dragover', function(e) {
@@ -31,48 +32,51 @@
 			e.preventDefault();
 			
 			var files = e.originalEvent.dataTransfer.files;
-			var file = files[0];
-			console.log(file);
-			
-			var maxSize = 10485760;
-			
-			if (file.size > maxSize) {
-				alert('파일 크기가 너무 큽니다 : ' + file.size);
-				return;
-			}
-			
-			var formData = new FormData();
-			formData.append('file', file);
-			
-			$.ajax({
-				type : "post",
-				url : "/uploadAjax",
-				data : formData,
-				dataType : "text",
-				contentType : false,
-				processData : false,
-				success : function(data) {
-					console.log(data);
-					var str = '';
-
-					if(checkImageType(data)) {
-						str = "<div>"
-							+ "<a href='/displayFile?fileName=" + getImageLink(data) + "' target='_blank'>"
-							+ "<img src='/displayFile?fileName=" + data + "'/>"
-							+ "</a>"
-							+ "<small data-src='" + data + "'>X</small>"
-							+ "</div>";
-					} else {
-						str = "<div>"
-							+ "<a href='/displayFile?fileName=" + data + "'>"
-							+ getOriginalName(data)
-							+ "</a>"
-							+ "<small data-src='" + data + "'>X</small>"
-							+ "</div>";
-					}
-					$(".uploadList").append(str);
+			for (var i = 0; i < files.length; i++) {
+				var file = files[i];
+				console.log(file);
+				
+				var maxSize = 10485760;
+				
+				if (file.size > maxSize) {
+					alert('파일 크기가 너무 큽니다 : ' + file.size);
+					return;
 				}
-			});
+				
+				var formData = new FormData();
+				formData.append('file', file);
+				
+				$.ajax({
+					type : "post",
+					url : "/uploadAjax",
+					data : formData,
+					dataType : "text",
+					contentType : false,
+					processData : false,
+					success : function(data) {
+						console.log(data);
+						var str = '';
+	
+						if(checkImageType(data)) {
+							str = "<div>"
+								+ "<input type='checkbox' id='select' data-src='" + data + "'>"
+								+ "<a href='/displayFile?fileName=" + getImageLink(data) + "' target='_blank'>"
+								+ "<img src='/displayFile?fileName=" + data + "'/>"
+								+ "</a>"
+								+ "<small data-src='" + data + "'> X </small>"
+								+ "</div>";
+						} else {
+							str = "<div>"
+								+ "<a href='/displayFile?fileName=" + data + "'>"
+								+ getOriginalName(data)
+								+ "</a>"
+								+ "<small data-src='" + data + "'> X </small>"
+								+ "</div>";
+						}
+						$(".uploadList").append(str);
+					}
+				});
+			}
 		});
 		
 		function checkImageType(fileName) {
@@ -98,7 +102,7 @@
 			return front + end;
 		}
 		
-		$('.uploadedList').on('click', 'small', function(e) {
+		$('.uploadList').on('click', 'small', function(e) {
 			var target = $(this);
 
 			$.ajax({
@@ -115,6 +119,46 @@
 					}
 				}
 			});
+		});
+		
+		$('#deleteAll').click(function() {
+			var target = $('.uploadList > div > small');
+			for (var i = 0; i < target.length; i++) {
+				$.ajax({
+					type : "post",
+					url : "/deleteFile",
+					dataType : "text",
+					data : {
+						fileName : $(target).attr("data-src")
+					},
+					success : function(result) {
+						if(result == 'deleted') {
+							//alert('작업 성공');
+							target.parent("div").remove();
+						}
+					}
+				});
+			}
+		});
+		
+		$('#deleteSelect').click(function() {
+			var target = $('.uploadList > div > #select:checked');
+			for (var i = 0; i < target.length; i++) {
+				$.ajax({
+					type : "post",
+					url : "/deleteFile",
+					dataType : "text",
+					data : {
+						fileName : $(target).attr("data-src")
+					},
+					success : function(result) {
+						if(result == 'deleted') {
+							//alert('작업 성공');
+							target.parent("div").remove();
+						}
+					}
+				});
+			}
 		});
 	</script>
 </body>
