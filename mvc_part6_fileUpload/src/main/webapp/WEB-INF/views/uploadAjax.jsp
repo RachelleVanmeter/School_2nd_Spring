@@ -134,12 +134,12 @@
 					},
 					success : function(result) {
 						if(result == 'deleted') {
-							//alert('작업 성공');
 							target.parent("div").remove();
 						}
 					}
 				});
 			}
+			alert('작업 성공');
 		});
 		
 		$('#deleteSelect').click(function() {
@@ -154,12 +154,12 @@
 					},
 					success : function(result) {
 						if(result == 'deleted') {
-							//alert('작업 성공');
 							target.parent("div").remove();
 						}
 					}
 				});
 			}
+			alert('작업 성공');
 		});
 	</script>
 </body>
