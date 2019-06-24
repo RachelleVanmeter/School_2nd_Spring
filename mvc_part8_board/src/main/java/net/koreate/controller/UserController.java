@@ -1,8 +1,13 @@
 package net.koreate.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +48,23 @@ public class UserController {
 		mav.addObject("loginDTO", dto);
 		mav.setViewName("redirect:/");
 		return mav;
+	}
+	
+	@GetMapping("/signOut")
+	public String signOut(HttpSession session, HttpServletRequest request, HttpServletResponse response,
+			@CookieValue(name = "signInCookie", required = false) Cookie signInCookie) {
+		if (session.getAttribute("userInfo") != null) {
+			session.removeAttribute("userInfo");
+			//Cookie cookie = WebUtils.getCookie(request, "signInCookie");
+			if (signInCookie != null) {
+				System.out.println("signInCookie key : " + signInCookie.getName());
+				System.out.println("signInCookie value : " + signInCookie.getValue());
+				signInCookie.setPath("/");
+				signInCookie.setMaxAge(0);
+				response.addCookie(signInCookie);
+			}
+		}
+		return "redirect:/";
 	}
 
 }

@@ -7,10 +7,20 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 	
-	<beans:bean id="loginInterceptor" 
-			class="net.koreate.interceptor.LoginInterceptor"/> 
+	<beans:bean id="loginInterceptor" class="net.koreate.interceptor.LoginInterceptor"/> 
+	<beans:bean id="chackCookieInterceptor" class="net.koreate.interceptor.CheckCookieInterceptor"/> 
 	
 	<interceptors>
+		<interceptor>
+			<mapping path="/**" />
+			<!-- <exclude-mapping path="/user/*"/> -->
+			<exclude-mapping path="/user/signIn"/>
+			<exclude-mapping path="/user/signUp"/>
+			<exclude-mapping path="/user/signInPost"/>
+			<exclude-mapping path="/user/signUpPost"/>
+			<exclude-mapping path="/user/signOut"/>
+			<beans:ref bean="chackCookieInterceptor"/>
+		</interceptor>
 		<interceptor>
 			<mapping path="/user/signUpPost" />
 			<beans:bean class="net.koreate.interceptor.SignUpInterceptor"/>
