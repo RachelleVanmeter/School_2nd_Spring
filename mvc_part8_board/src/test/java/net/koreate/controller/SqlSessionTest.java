@@ -12,20 +12,18 @@ import net.koreate.dao.UserDAO;
 import net.koreate.vo.UserVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations= {
-		"classpath:context/root-context.xml"
-})
+@ContextConfiguration(locations = { "classpath:context/root-context.xml" })
 public class SqlSessionTest {
-	
+
 	@Inject
 	SqlSession session;
-	
+
 	@Inject
 	UserDAO dao;
-	
+
 	@Test
 	public void testSqlSession() {
-		System.out.println("session connection : "+session.getConnection());
+		System.out.println("session connection : " + session.getConnection());
 		System.out.println("UerDAO : " + dao);
 		UserVO vo = new UserVO();
 		vo.setUid("id005");
