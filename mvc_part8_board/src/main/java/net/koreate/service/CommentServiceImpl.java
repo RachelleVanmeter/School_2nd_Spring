@@ -3,6 +3,6 @@ package net.koreate.service;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CommentServiceImpl implements CommentService {
+public class CommentServiceImpl implements CommentService{
 
 }

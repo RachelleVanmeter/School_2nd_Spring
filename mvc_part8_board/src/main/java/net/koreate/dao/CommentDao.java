@@ -1,5 +1,5 @@
 package net.koreate.dao;
 
-public interface CommentDao {
+public interface CommentDAO {
 
 }
