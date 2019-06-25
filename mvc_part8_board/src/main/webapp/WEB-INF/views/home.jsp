@@ -12,6 +12,7 @@
 	<c:choose>
 		<c:when test="${!empty userInfo}">
 			<span>${userInfo.uname} 님 반갑습니다.</span>
+			<a href="sboard/register">글작성</a>
 			<a href="user/signOut">signOut</a>
 		</c:when>
 		<c:otherwise>
