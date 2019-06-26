@@ -19,7 +19,6 @@ public class SignUpInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		System.out.println("Sign Up Interceptor preHandle");
-
 		String upw = request.getParameter("upw");
 		String repw = request.getParameter("repw");
 

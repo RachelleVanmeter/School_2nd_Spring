@@ -41,7 +41,7 @@ CREATE TABLE tbl_comment(
 	commentAuth VARCHAR(50) NOT NULL,
 	regdate TIMESTAMP NOT NULL DEFAULT now(),
 	updatedate TIMESTAMP NOT NULL DEFAULT now(),
-	uno int not null ,
+	uno int not null default 1,
 	constraint fk_tbl_comment_bno FOREIGN KEY(bno) REFERENCES re_tbl_board(bno),
 	constraint fk_tbl_comment_uno FOREIGN KEY(uno) REFERENCES tbl_user(uno)	
 );
@@ -57,9 +57,12 @@ CREATE TABLE tbl_attach(
 );
 
 SELECT * FROM tbl_user;
+SELECT * FROM tbl_attach;
+SELECT * FROM re_tbl_board;
+SELECT * FROM tbl_comment;
 
+DELETE FROM tbl_attach;
 
-
-
+commit
 
 

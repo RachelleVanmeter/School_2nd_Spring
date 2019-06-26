@@ -23,24 +23,15 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
-
-		// session 에 로그인된 회원정보 userInfo로 저장
-
-		if (session.getAttribute("userInfo") != null) {
-			session.removeAttribute("userInfo");
-		}
-
+		if (session.getAttribute("userInfo") != null) session.removeAttribute("userInfo");
 		return true;
 	}
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-
 		ModelMap modelObj = modelAndView.getModelMap();
-
 		LoginDTO dto = (LoginDTO) modelObj.get("loginDTO");
-
 		System.out.println("LoginInterceptor postHandle : " + dto);
 
 		UserVO vo = service.signIn(dto);

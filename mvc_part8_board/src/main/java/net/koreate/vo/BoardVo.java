@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 public class BoardVO {
-
 	private int bno; // 번호
 	private String title; // 제목
 	private String content; // 내용
@@ -19,8 +18,6 @@ public class BoardVO {
 	private int viewcnt; // 조회수
 	private String showboard; // 삭제유무
 	private int uno; // 작성자
-
 	private String[] files; // 첨부파일 경로와 이름 목록
 	private int commentCnt; // 전체 댓글의 개수
-
 }

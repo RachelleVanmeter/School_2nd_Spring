@@ -67,11 +67,8 @@
 				
 				if(bool){
 					document.getElementById("signInForm").submit();
-					
 				}
-				
 			});
-			
 		};
 		
 		var message = "${message}";

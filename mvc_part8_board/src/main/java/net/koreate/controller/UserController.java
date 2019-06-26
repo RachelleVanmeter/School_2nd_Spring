@@ -49,13 +49,14 @@ public class UserController {
 		mav.setViewName("redirect:/");
 		return mav;
 	}
-	
+
 	@GetMapping("/signOut")
 	public String signOut(HttpSession session, HttpServletRequest request, HttpServletResponse response,
 			@CookieValue(name = "signInCookie", required = false) Cookie signInCookie) {
+
 		if (session.getAttribute("userInfo") != null) {
 			session.removeAttribute("userInfo");
-			//Cookie cookie = WebUtils.getCookie(request, "signInCookie");
+
 			if (signInCookie != null) {
 				System.out.println("signInCookie key : " + signInCookie.getName());
 				System.out.println("signInCookie value : " + signInCookie.getValue());
