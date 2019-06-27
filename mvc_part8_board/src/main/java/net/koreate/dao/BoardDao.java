@@ -1,6 +1,7 @@
 package net.koreate.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import net.koreate.util.SearchCriteria;
 import net.koreate.vo.BoardVO;
@@ -36,5 +37,11 @@ public interface BoardDAO {
 	
 	// 첨부파일 삭제
 	void deleteAttach(int bno) throws Exception;
+
+	// 게시글 정보 수정
+	void update(BoardVO vo) throws Exception;
+
+	// 게시글 파일 정보 업뎃
+	void replaceAttach(Map<String, Object> paramMap);
 
 }

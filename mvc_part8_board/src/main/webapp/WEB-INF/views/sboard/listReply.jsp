@@ -39,7 +39,7 @@
 				<c:when test="${board.showboard == 'y'}">
 					<tr>
 						<td>${board.bno}</td>
-						<td><a href="/sboard/readPage?bno=${board.bno}">${board.title} [ ${board.commentCnt} ]</a></td>
+						<td><a href="/sboard/readPage${pageMaker.makeSearchQuery(pageMaker.cri.page)}&bno=${board.bno}">${board.title} [ ${board.commentCnt} ]</a></td>
 						<td>${board.writer}</td>
 						<td><f:formatDate pattern="yyyy-MM-dd HH:mm" value="${board.regdate}"/></td>
 						<td>${board.viewcnt}</td>
@@ -59,15 +59,15 @@
 	</table>
 	<!-- paging 블럭 -->
 	<c:if test="${pageMaker.prev}">
-		<a href="/sboard/listReply?page=1">&laquo;&laquo;</a>
-		<a href="/sboard/listReply?page=${pageMaker.startPage-1}">&laquo;</a>
+		<a href="/sboard/listReply${pageMaker.makeSearchQuery(1)}">&laquo;&laquo;</a>
+		<a href="/sboard/listReply${pageMaker.makeSearchQuery(pageMaker.startPage-1)}">&laquo;</a>
 	</c:if>
 	<c:forEach var="i" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-		<a href="/sboard/listReply?page=${i}">${i}</a>
+		<a href="/sboard/listReply${pageMaker.makeSearchQuery(i)}">${i}</a>
 	</c:forEach>
 	<c:if test="${pageMaker.next}">
-		<a href="/sboard/listReply?page=${pageMaker.endPage+1}">&raquo;</a>
-		<a href="/sboard/listReply?page=${pageMaker.maxPage}">&raquo;&raquo;</a>
+		<a href="/sboard/listReply${pageMaker.makeSearchQuery(pageMaker.endPage+1)}">&raquo;</a>
+		<a href="/sboard/listReply${pageMaker.makeSearchQuery(pageMaker.maxPage)}">&raquo;&raquo;</a>
 	</c:if>
 	
 	<script>

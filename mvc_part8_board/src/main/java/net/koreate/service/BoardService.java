@@ -28,4 +28,7 @@ public interface BoardService {
 	
 	// 게시물 삭제
 	void remove(int bno) throws Exception;
+	
+	// 게시물 수정
+	void modify(BoardVO vo) throws Exception;
 }

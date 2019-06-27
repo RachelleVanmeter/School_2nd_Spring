@@ -48,16 +48,20 @@ public class ReplyBoardController {
 	}
 
 	@GetMapping("readPage")
-	public String readPage(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception {
+	public String readPage(@RequestParam("bno") int bno, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 		// 조회수 증가
 		service.updateCnt(bno);
 		rttr.addAttribute("bno", bno);
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		// return "redirect:/sboard/read?bno="+bno;
 		return "redirect:/sboard/read";
 	}
 
 	@GetMapping("read")
-	public String readPage(Model model, @RequestParam("bno") int bno) throws Exception {
+	public String readPage(Model model, @RequestParam("bno") int bno, @ModelAttribute("cri") SearchCriteria cri) throws Exception {
 		// 게시물 정보
 		model.addAttribute("boardVO", service.readReply(bno));
 		return "sboard/readPage";
@@ -69,7 +73,24 @@ public class ReplyBoardController {
 		return "redirect:/sboard/listReply";
 	}
 	
-
+	@GetMapping("modifyPage")
+	public String modifyPage(Model model, @RequestParam("bno") int bno) throws Exception {
+		model.addAttribute("boardVO", service.readReply(bno));
+		return "sboard/modifyPage";
+	}
+	
+	@PostMapping("modifyPage")
+	public String modifyPage(BoardVO vo, RedirectAttributes rttr) throws Exception {
+		System.out.println("modifyPage :" + vo);
+		
+		service.modify(vo);
+		
+		rttr.addAttribute("bno", vo.getBno());
+		return "redirect:/sboard/read";
+	}
+	
+	
+	
 	@GetMapping("/getAttach/{bno}")
 	@ResponseBody
 	public List<String> getAttach(@PathVariable("bno") int bno) throws Exception {

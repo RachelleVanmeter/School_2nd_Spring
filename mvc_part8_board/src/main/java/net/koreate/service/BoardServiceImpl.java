@@ -1,6 +1,8 @@
 package net.koreate.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -81,6 +83,27 @@ public class BoardServiceImpl implements BoardService {
 		dao.deleteAttach(bno);
 		// 덧글 삭제
 		commentDAO.deleteComments(bno);
+	}
+
+	@Override
+	@Transactional
+	public void modify(BoardVO vo) throws Exception {
+		// 게시물 정보 갱신
+		dao.update(vo);
+		
+		// 첨부된 파일 정보 갱신
+		dao.deleteAttach(vo.getBno());
+		
+		String[] files = vo.getFiles();
+		
+		if (files == null) return;
+		
+		for (String fullName : files) {
+			Map<String, Object> paramMap = new HashMap<>();
+			paramMap.put("bno", vo.getBno());
+			paramMap.put("fullName", fullName);
+			dao.replaceAttach(paramMap);
+		}
 	}
 
 }
