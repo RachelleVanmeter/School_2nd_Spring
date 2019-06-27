@@ -35,13 +35,26 @@
 		</tr>
 		<!-- 게시글 항목 출력 -->
 		<c:forEach var="board" items="${list}">
-			<tr>
-				<td>${board.bno}</td>
-				<td><a href="/sboard/readPage?bno=${board.bno}">${board.title}</a></td>
-				<td>${board.writer}</td>
-				<td><f:formatDate pattern="yyyy-MM-dd HH:mm" value="${board.regdate}"/></td>
-				<td>${board.viewcnt}</td>
-			</tr>
+			<c:choose>
+				<c:when test="${board.showboard == 'y'}">
+					<tr>
+						<td>${board.bno}</td>
+						<td><a href="/sboard/readPage?bno=${board.bno}">${board.title} [ ${board.commentCnt} ]</a></td>
+						<td>${board.writer}</td>
+						<td><f:formatDate pattern="yyyy-MM-dd HH:mm" value="${board.regdate}"/></td>
+						<td>${board.viewcnt}</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td></td>
+						<td>삭제된 게시물입니다.</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
 		</c:forEach>
 	</table>
 	<!-- paging 블럭 -->
@@ -63,6 +76,9 @@
 			var keywordValue = $("#keyword").val();
 			console.log(searchValue +"  /  " + keywordValue);
 			location.href="/sboard/listReply?searchType="+searchValue+"&keyword="+keywordValue;
+		});
+		$('#newBtn').click(function() {
+			location.href="/sboard/register";
 		});
 	</script>
 </body>

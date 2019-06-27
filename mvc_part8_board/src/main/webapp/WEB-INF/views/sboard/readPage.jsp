@@ -193,7 +193,7 @@
 			type: 'patch',
 			url: '/comments/' + cno,
 			headers: {
-				'Contect-Type': 'application/json',
+				'Content-Type': 'application/json',
 				'X-HTTP-Method-Override': "PATCH"
 			},
 			data: JSON.stringify({
@@ -201,7 +201,31 @@
 			}),
 			dataType: "text",
 			success: function(data) {
-				alert(data);
+				if (data == "SUCCESS") {
+					alert("수정 완료");
+					$('#modDiv').toggle('slow');
+					getPageList(commentPage);
+				}
+			}
+		});
+	});
+	
+	$('#commentDelBtn').click(function() {
+		var cno = $('.mod-title').html();
+		$.ajax({
+			type: 'delete',
+			url: '/comments/' + cno,
+			headers: {
+				'Content-Type': 'application/json',
+				'X-HTTP-Method-Override': "DELTET"
+			},
+			dataType: "text",
+			success: function(data) {
+				if (data == "SUCCESS") {
+					alert("삭제완료 완료");
+					$('#modDiv').toggle('slow');
+					getPageList(commentPage);
+				}
 			}
 		});
 	});
@@ -317,7 +341,7 @@
 				}
 			*/
 			console.log(fileInfo);
-			var html = "<li>";
+			var html = "<li data-src='" + fileInfo.fullName + "'>";
 				html += "<span>";
 				html += "<img src='"+fileInfo.imgSrc+"' alt='attachment'/>";
 				html += "</span>";
@@ -357,6 +381,23 @@
 		if(isDelete){
 			console.log("삭제 요청");
 			// 삭제 처리
+			var arr = [];
+			
+			$('.uploadedList li').each(function(idx) {
+				arr.push($(this).attr('data-src'));
+			});
+			
+			console.log(arr.length);
+			console.log(arr);
+			
+			if (arr.length > 0) {
+				$.post('/deleteAllFiles', {files: arr}, function(result) {
+					alert(result);
+				});
+			}
+			
+			obj.attr('action', '/sboard/remove').submit();
+			
 		}else{
 			alert("삭제 요청이 취소 되었습니다.");
 		}

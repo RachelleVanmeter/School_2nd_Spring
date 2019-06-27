@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,7 +61,25 @@ public class CommentController {
 		ResponseEntity<String> entity = null;
 		
 		try {
-			cs.addComment(vo);
+			vo.setCno(cno);
+			cs.modifyComment(vo);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	// 덧슬 수정
+	// /comments/cno
+	@DeleteMapping("/{cno}")
+	public ResponseEntity<String> delete(@PathVariable("cno") int cno) {
+		System.out.println(cno);
+		ResponseEntity<String> entity = null;
+		
+		try {
+			cs.removeComment(cno);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -62,6 +62,13 @@ public class ReplyBoardController {
 		model.addAttribute("boardVO", service.readReply(bno));
 		return "sboard/readPage";
 	}
+	
+	@PostMapping("remove")
+	public String remove(@RequestParam("bno") int bno) throws Exception {
+		service.remove(bno);
+		return "redirect:/sboard/listReply";
+	}
+	
 
 	@GetMapping("/getAttach/{bno}")
 	@ResponseBody

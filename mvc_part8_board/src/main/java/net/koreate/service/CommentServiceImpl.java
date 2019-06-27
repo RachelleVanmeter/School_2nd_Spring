@@ -51,4 +51,14 @@ public class CommentServiceImpl implements CommentService {
 		return pageMaker;
 	}
 
+	@Override
+	public void modifyComment(CommentVO vo) throws Exception {
+		dao.modifyComment(vo);
+	}
+
+	@Override
+	public void removeComment(int cno) throws Exception {
+		dao.removeComment(cno);
+	}
+
 }

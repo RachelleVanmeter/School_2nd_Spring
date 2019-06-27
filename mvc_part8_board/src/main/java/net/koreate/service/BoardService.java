@@ -25,4 +25,7 @@ public interface BoardService {
 
 	// 첨부 파일 목록
 	List<String> getAttach(int bno) throws Exception;
+	
+	// 게시물 삭제
+	void remove(int bno) throws Exception;
 }

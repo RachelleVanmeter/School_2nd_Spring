@@ -199,5 +199,18 @@ public class UploadUtils {
 
 		return "DELETED";
 	}
+	
+	public String deleteAllFiles(String[] files) {
+		for (String file : files) {
+			String format = file.substring(file.lastIndexOf(".") + 1);
+			if (MediaUtils.getMediaType(format) != null) {
+				// 이미지
+				String name = file.replace("s_", "");
+				new File(uploadPath + (name).replace('/', File.pathSeparatorChar)).delete();
+			}
+			new File(uploadPath + (file).replace('/', File.pathSeparatorChar)).delete();
+		}
+		return "DELETED";
+	}
 
 }

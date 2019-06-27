@@ -75,7 +75,16 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT fullName FROM tbl_attach 
 		WHERE bno = #{bno} ORDER BY regdate DESC
 	</select>
-
+	
+	<!-- 게시글 삭제 -->
+	<update id="delete" parameterType="int">
+		UPDATE re_tbl_board SET showboard = 'n' WHERE bno = #{bno}
+	</update>
+	
+	<!-- 첨부파일 삭제 -->
+	<delete id="deleteAttach" parameterType="int">
+		DELETE FROM tbl_attach WHERE bno = #{bno}
+	</delete>
 </mapper>
 
 

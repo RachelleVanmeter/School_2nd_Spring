@@ -3,8 +3,10 @@ package net.koreate.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import net.koreate.vo.CommentVO;
 
@@ -20,5 +22,16 @@ public interface CommentDAO {
 	// 페이징 처리된 댓글 목록
 	@Select("SELECT * FROM tbl_comment WHERE bno = #{bno} ORDER BY cno DESC limit #{cri.pageStart} , #{cri.perPageNum}")
 	List<CommentVO> listPage(Map<String, Object> paramMap) throws Exception;
+	
+	// 덧글 수정
+	@Update("UPDATE tbl_comment SET commentText = #{commentText}, updatedate = now() WHERE cno = #{cno}")
+	void modifyComment(CommentVO vo) throws Exception;
+	
+	// 덧글 삭제
+	@Delete("DELETE FROM tbl_comment WHERE cno = #{cno}")
+	void removeComment(int cno) throws Exception;
+
+	@Delete("DELETE FROM tbl_comment WHERE bno = #{bno}")
+	void deleteComments(int bno);
 
 }

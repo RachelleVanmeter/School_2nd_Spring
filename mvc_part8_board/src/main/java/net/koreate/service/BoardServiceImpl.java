@@ -5,8 +5,10 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.koreate.dao.BoardDAO;
+import net.koreate.dao.CommentDAO;
 import net.koreate.util.PageMaker;
 import net.koreate.util.SearchCriteria;
 import net.koreate.vo.BoardVO;
@@ -16,6 +18,9 @@ public class BoardServiceImpl implements BoardService {
 
 	@Inject
 	BoardDAO dao;
+	
+	@Inject
+	CommentDAO commentDAO;
 
 	@Override
 	public void registReply(BoardVO board) throws Exception {
@@ -38,6 +43,9 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> listReplyCriteria(SearchCriteria cri) throws Exception {
 		List<BoardVO> list = dao.listReplyCriteria(cri);
+		for (BoardVO board : list) {
+			board.setCommentCnt(commentDAO.totalCount(board.getBno()));
+		}
 		return list;
 	}
 
@@ -62,6 +70,17 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<String> getAttach(int bno) throws Exception {
 		return dao.getAttach(bno);
+	}
+
+	@Override
+	@Transactional
+	public void remove(int bno) throws Exception {
+		// 게시글 삭제
+		dao.delete(bno);
+		// 첨부파일 삭제
+		dao.deleteAttach(bno);
+		// 덧글 삭제
+		commentDAO.deleteComments(bno);
 	}
 
 }
