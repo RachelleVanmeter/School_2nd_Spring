@@ -22,52 +22,58 @@ import net.koreate.vo.BoardVO;
 @Controller
 @RequestMapping("/sboard/*")
 public class ReplyBoardController {
-
+	
 	@Inject
 	BoardService service;
-
+	
 	@GetMapping("register")
-	public String registerGET() {
-		return "sboard/register";
-	}
-
+	public String registerGET() {return "sboard/register";}
+	
 	@PostMapping("register")
-	public String registerPost(BoardVO board) throws Exception {
+	public String registerPost(BoardVO board) throws Exception{
 		System.out.println("registerPost : " + board);
 		service.registReply(board);
 		return "redirect:/sboard/listReply";
 	}
-
+	
 	@GetMapping("listReply")
-	public String listReply(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	public String listReply(
+			@ModelAttribute("cri") SearchCriteria cri,
+			Model model) throws Exception{
 		// 검색 조건에 맞는 페이징 처리된 게시물 항목(한번에 client에 보여줄 게시물)
-		model.addAttribute("list", service.listReplyCriteria(cri));
+		model.addAttribute("list",service.listReplyCriteria(cri));
 		// 페이징 블럭 정보
-		model.addAttribute("pageMaker", service.getPageMaker(cri));
+		model.addAttribute("pageMaker",service.getPageMaker(cri));
 		return "sboard/listReply";
 	}
-
+	
 	@GetMapping("readPage")
-	public String readPage(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception {
+	public String readPage(
+			@RequestParam("bno") int bno,
+			RedirectAttributes rttr) 
+	throws Exception{
 		// 조회수 증가
 		service.updateCnt(bno);
-		rttr.addAttribute("bno", bno);
+		rttr.addAttribute("bno",bno);
 		// return "redirect:/sboard/read?bno="+bno;
 		return "redirect:/sboard/read";
 	}
-
+	
+	
 	@GetMapping("read")
-	public String readPage(Model model, @RequestParam("bno") int bno) throws Exception {
+	public String readPage(
+			Model model, 
+			@RequestParam("bno") int bno)throws Exception{
 		// 게시물 정보
-		model.addAttribute("boardVO", service.readReply(bno));
+		model.addAttribute("boardVO",service.readReply(bno));
 		return "sboard/readPage";
 	}
-
+	
 	@GetMapping("/getAttach/{bno}")
 	@ResponseBody
-	public List<String> getAttach(@PathVariable("bno") int bno) throws Exception {
+	public List<String> getAttach(@PathVariable("bno") int bno) throws Exception{
 		System.out.println(bno);
 		return service.getAttach(bno);
 	}
-
+	
 }

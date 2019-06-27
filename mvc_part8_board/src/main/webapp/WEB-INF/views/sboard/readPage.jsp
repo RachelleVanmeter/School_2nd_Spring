@@ -18,6 +18,11 @@
 		padding:20px;
 	}
 	
+	#pagination li{
+		float:left;
+		padding:10px;
+	}
+	
 	ul li{
 		list-style:none;
 	}
@@ -97,7 +102,7 @@
 	<ul id="comments">
 	</ul>
 </div>
-<div>
+<div style="height:100px;">
 	<ul id="pagination"></ul>
 </div>
 
@@ -107,6 +112,20 @@
 	var commentPage = 1;	
 	
 	getPageList(commentPage);
+	
+	String.prototype.replaceAll = function(old , dest){
+		return this.split(old).join(dest);
+	}
+	
+	// < &lt;  >  &gt; 
+	function changeEscape(text){
+		var result = "";
+		result = text.replaceAll("<","&lt;");
+		result = result.replaceAll(">","&gt;");
+		result = result.replaceAll("\"","'");
+		return result;
+	}
+	
 	
 	// 작성자 확인
 	function isCheckAuth(uno){
@@ -133,6 +152,9 @@
 	
 	// 페이징 처리된 댓글 목록
 	function getPageList(page){
+		
+		commentPage = page;
+		
 		// 해당 게시물의 페이징 처리된 댓글 목록 
 		// 페이징 블럭 정보
 		$.getJSON("/comments/"+bno+"/"+page,function(data){
@@ -147,10 +169,14 @@
 			
 			$(data.list).each(function(){
 				// this == CommentVO
+				console.log(this.commentText);
+				var text = changeEscape(this.commentText);
+				console.log(text);
+				
 				str += '<li data-cno="'+this.cno+'" ';
-				str += 'data-text="'+this.commentText+'" class="commentLi">';
+				str += 'data-text="'+text+'" class="commentLi">';
 				str += '작성자 : ' + this.commentAuth +'- 작성시간 : '+getDate(this.updatedate);
-				str += '<br/> 내용 : ' + this.commentText;
+				str += '<br/> 내용 : ' + text;
 				if(isCheckAuth(this.uno)){
 					str += ' - <button>MODIFY</button>';	
 				}
@@ -158,10 +184,34 @@
 			});
 			
 			$("#comments").html(str);
-			
+			printPage(data.pageMaker);
 		});
 	}
 	
+	function printPage(pageMaker){
+		console.log(pageMaker);
+		var str ="";
+		
+		if(pageMaker.prev){
+			str += "<li><a href='"+(pageMaker.startPage-1)+"'> << </a></li>";
+		}
+		
+		for(var i=pageMaker.startPage; i <= pageMaker.endPage; i++){
+			str += "<li><a href='"+i+"'> "+i+" </a></li>";
+		}
+		
+		if(pageMaker.next){
+			str += "<li><a href='"+(pageMaker.endPage+1)+"'> >> </a></li>";
+		}
+		console.log(str);
+		$("#pagination").html(str);
+	}
+	
+	$("#pagination").on("click","li a",function(event){
+		event.preventDefault();
+		var page = $(this).attr("href");
+		getPageList(page);
+	});
 	
 	
 	// 댓글 등록	
@@ -186,6 +236,7 @@
 			}),
 			success : function(data){
 				alert(data);
+				getPageList(1);
 				$("#newCommentText").val("");
 				$("#newCommentText").focus();
 			} 
@@ -246,3 +297,13 @@
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+

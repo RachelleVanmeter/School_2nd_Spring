@@ -19,26 +19,32 @@ import net.koreate.util.UploadUtils;
 
 @RestController
 public class UploadController {
-
+	
 	@Inject
 	ServletContext context;
-
+	
 	@PostMapping("/uploadFile")
-	public ResponseEntity<List<String>> uploadFile(MultipartFile[] file) throws IOException {
-		return new ResponseEntity<List<String>>(UploadUtils.getInstance(context).uploadFile(file), HttpStatus.CREATED);
+	public ResponseEntity<List<String>> uploadFile(MultipartFile[] file) throws IOException{
+		/*List<String> list = UploadUtils.getInstance(context).uploadFile(file);
+		return new ResponseEntity<List<String>>(list, HttpStatus.CREATED);*/
+		return new ResponseEntity<List<String>>(
+				UploadUtils.getInstance(context).uploadFile(file),
+				HttpStatus.CREATED);
 	}
-
+	
 	@GetMapping("/displayFile")
-	public ResponseEntity<byte[]> displayFile(String fileName) throws IOException {
+	public ResponseEntity<byte[]> displayFile(String fileName) throws IOException{
 		UploadUtils utils = UploadUtils.getInstance(context);
-		return new ResponseEntity<byte[]>(utils.getBytes(fileName), utils.getHeader(fileName), HttpStatus.OK);
+		return new ResponseEntity<byte[]>(utils.getBytes(fileName),utils.getHeader(fileName),HttpStatus.OK);
 	}
-
+	
 	@DeleteMapping("/deleteFile")
-	public ResponseEntity<String> deleteFile(@RequestBody String fileName) throws IOException {
+	public ResponseEntity<String> deleteFile(@RequestBody String fileName) throws IOException{
 		UploadUtils utils = UploadUtils.getInstance(context);
 		String result = utils.deleteFile(fileName);
-		return new ResponseEntity<>(result, HttpStatus.OK);
+		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
-
+	
+	
+	
 }

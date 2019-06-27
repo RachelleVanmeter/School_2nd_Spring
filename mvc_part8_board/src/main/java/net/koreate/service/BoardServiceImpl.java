@@ -16,23 +16,27 @@ public class BoardServiceImpl implements BoardService {
 
 	@Inject
 	BoardDAO dao;
-
+	
 	@Override
 	public void registReply(BoardVO board) throws Exception {
+		// 게시물 등록  / origin update / 첨부파일 등록
 		dao.register(board);
 		dao.updateOrigin();
-
-		String[] files = board.getFiles();
-
-		if (files == null) return;
-		for (String fullName : files) dao.addAttach(fullName);
 		
+		String[] files = board.getFiles();
+		
+		if(files == null) {return;}
+		
+		for(String fullName : files) {
+			dao.addAttach(fullName);
+		}
 		System.out.println("register 작업 완료");
 	}
 
 	@Override
 	public List<BoardVO> listReplyCriteria(SearchCriteria cri) throws Exception {
-		return dao.listReplyCriteria(cri);
+		List<BoardVO> list = dao.listReplyCriteria(cri);
+		return list;
 	}
 
 	@Override
@@ -57,5 +61,14 @@ public class BoardServiceImpl implements BoardService {
 	public List<String> getAttach(int bno) throws Exception {
 		return dao.getAttach(bno);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
