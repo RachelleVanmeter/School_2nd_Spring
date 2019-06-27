@@ -56,8 +56,9 @@ public class CommentController {
 	// /comments/cno
 	@PatchMapping("/{cno}")
 	public ResponseEntity<String> updata(@PathVariable("cno") int cno, @RequestBody CommentVO vo) {
-		System.out.println("comment add : " + vo);
+		System.out.println(cno + " // " + vo);
 		ResponseEntity<String> entity = null;
+		
 		try {
 			cs.addComment(vo);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
