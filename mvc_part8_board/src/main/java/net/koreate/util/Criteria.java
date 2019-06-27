@@ -1,16 +1,15 @@
 package net.koreate.util;
 
 public class Criteria {
-	
-	private int page;			// 현재 페이지
-	private int perPageNum;		// 한번에 보여줄 게시글의 개수
-	
-	
+
+	private int page; // 현재 페이지
+	private int perPageNum; // 한번에 보여줄 게시글의 개수
+
 	public Criteria() {
-		this(1,10);
+		this(1, 10);
 		System.out.println("CRI 기본 생성자 호출");
 	}
-	
+
 	public Criteria(int page, int perPageNum) {
 		this.page = page;
 		this.perPageNum = perPageNum;
@@ -23,7 +22,7 @@ public class Criteria {
 
 	public void setPage(int page) {
 		System.out.println("setPage 호출");
-		if(page <= 0){
+		if (page <= 0) {
 			this.page = 1;
 			return;
 		}
@@ -36,15 +35,15 @@ public class Criteria {
 
 	public void setPerPageNum(int perPageNum) {
 		System.out.println("setPerPageNum 호출");
-		if(perPageNum <= 0 || perPageNum > 100) {
+		if (perPageNum <= 0 || perPageNum > 100) {
 			this.perPageNum = 10;
 			return;
 		}
 		this.perPageNum = perPageNum;
 	}
-	
+
 	public int getPageStart() {
-		return (this.page-1)*perPageNum;
+		return (this.page - 1) * perPageNum;
 	}
 
 	@Override

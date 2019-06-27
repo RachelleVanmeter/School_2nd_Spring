@@ -98,10 +98,31 @@
 <br/>
 <hr/>
 <br/>
+<!-- 덧글 수정 삭제 -->
+<div id="modDiv" style="display: none;">
+	<h3>덧글 수정 & 삭제</h3>
+	<div class="mod-title"></div>
+	<div>
+		<input type="text" id="commentText">
+	</div>
+	<div>
+		<input type="button" id="commentModBtn" value="MODIFY">
+		<input type="button" id="commentDelBtn" value="DELETE">
+		<input type="button" id="closeBtn" value="CLOSE">
+	</div>
+	<br/>
+	<hr/>
+	<br/>
+</div>
+<!-- 덧글 목록 -->
 <div>
 	<ul id="comments">
 	</ul>
 </div>
+<br/>
+<hr/>
+<br/>
+<!-- 덧글 페이징 처리 -->
 <div style="height:100px;">
 	<ul id="pagination"></ul>
 </div>
@@ -148,6 +169,42 @@
 		var seconds = dateObj.getSeconds();
 		return year+"/"+month+"/"+date+" "+hour+":"+minute+":"+seconds;
 	}
+	
+	
+	$('#comments').on('click', '.commentLi button', function() {
+		// .commentLi
+		var commentWrap = $(this).parent();
+		var cno = commentWrap.attr('data-cno');
+		var text = commentWrap.attr('data-text');
+		$('.mod-title').html(cno);
+		$('#commentText').val(text);
+		$('#modDiv').toggle('slow');
+		$('#commentText').focus();
+	});
+	
+	$('#closeBtn').click(function() {
+		$('#modDiv').toggle('slow');
+	});
+	
+	$('#commentModBtn').click(function() {
+		var cno = $('.mod-title').html();
+		var text = $('#commentText').val();
+		$.ajax({
+			type: 'patch',
+			url: '/comments/' + cno,
+			headers: {
+				'Contect-Type': 'application/json',
+				'X-HTTP-Method-Override': "PATCH"
+			},
+			data: JSON.stringify({
+				commentText: text
+			}),
+			dataType: "text",
+			success: function(data) {
+				alert(data);
+			}
+		});
+	});
 	
 	
 	// 페이징 처리된 댓글 목록
@@ -248,7 +305,17 @@
 	$.getJSON("/sboard/getAttach/"+bno,function(data){
 		console.log(data);
 		$(data).each(function(){
+			// String(fullName) == this 
+			//  /2019/06/25/asjkhslchsdlkfhhfkjlahlkd_origin.jpg
 			var fileInfo = getFileInfo(this);
+			/*
+				fileInfo : {
+					fileName : '얌얌이.png',
+					imgSrc : "/displayFile?fileName="+""/2019/06/25/s_asjkhslchsdlkfhhfkjlahlkd_얌얌이.png,
+					fullName : /2019/06/25/s_asjkhslchsdlkfhhfkjlahlkd_얌얌이.png,
+					getLink : "/displayFile?fileName="+""/2019/06/25/asjkhslchsdlkfhhfkjlahlkd_얌얌이.png,
+				}
+			*/
 			console.log(fileInfo);
 			var html = "<li>";
 				html += "<span>";
@@ -297,13 +364,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

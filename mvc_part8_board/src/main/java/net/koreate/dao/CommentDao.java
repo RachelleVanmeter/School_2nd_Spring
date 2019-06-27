@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import net.koreate.vo.CommentVO;
 
 public interface CommentDAO {
-	
+
 	@Insert("INSERT INTO tbl_comment(bno,commentText,commentAuth,uno) VALUES(#{bno},#{commentText},#{commentAuth},#{uno})")
 	void addComment(CommentVO vo) throws Exception;
 
@@ -22,9 +22,3 @@ public interface CommentDAO {
 	List<CommentVO> listPage(Map<String, Object> paramMap) throws Exception;
 
 }
-
-
-
-
-
-
