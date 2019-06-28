@@ -65,4 +65,8 @@ DELETE FROM tbl_attach;
 
 commit
 
-
+CREATE TABLE ban_ip(
+	ip varchar(50) primary key,
+	cnt int default 1,
+	bandate timestamp default now()
+);

@@ -24,7 +24,7 @@ public class UserController {
 	@Inject
 	UserService us;
 
-	@GetMapping("/signIn")
+	@RequestMapping("/signIn")
 	public String signIn() {
 		return "/user/signIn";
 	}
