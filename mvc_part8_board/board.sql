@@ -59,7 +59,8 @@ CREATE TABLE tbl_attach(
 SELECT * FROM tbl_user;
 SELECT * FROM tbl_attach;
 SELECT * FROM re_tbl_board;
-SELECT * FROM tbl_comment;
+insert into tbl_comment(bno, commentText, commentAuth, uno)
+SELECT bno, commentText, commentAuth, uno FROM tbl_comment;
 
 DELETE FROM tbl_attach;
 
