@@ -47,4 +47,12 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/common/error_404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>405</error-code>
+		<location>/error404</location>
+	</error-page>
 </web-app>
