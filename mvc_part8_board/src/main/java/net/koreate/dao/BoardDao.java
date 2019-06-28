@@ -44,4 +44,10 @@ public interface BoardDAO {
 	// 게시글 파일 정보 업뎃
 	void replaceAttach(Map<String, Object> paramMap);
 
+	// 답글들의 정렬값 수정
+	void updateReply(BoardVO board) throws Exception;
+
+	// 답글 등록
+	void registerReply(BoardVO board) throws Exception;
+
 }

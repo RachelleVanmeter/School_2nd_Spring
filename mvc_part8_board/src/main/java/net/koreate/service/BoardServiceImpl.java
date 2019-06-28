@@ -106,4 +106,22 @@ public class BoardServiceImpl implements BoardService {
 		}
 	}
 
+	@Override
+	@Transactional
+	public void replyRegister(BoardVO board) throws Exception {
+		// 기존 글의 정렬 순서 수정
+		
+		// seq 오름차순이기 때문에 기존글의 seq 값을 높여 준다
+		dao.updateReply(board);
+		
+		System.out.println("넘어온 값 : " + board);
+		// 원본글 보다 아래로 내려가고 원본글의 답들인걸 표현하기 위해 깁이를 수정
+		board.setDepth(board.getDepth() + 1);
+		board.setSeq(board.getSeq() + 1);
+		
+		System.out.println("등록된 값 : " + board);
+		// 게시글 등록
+		dao.registerReply(board);
+	}
+
 }

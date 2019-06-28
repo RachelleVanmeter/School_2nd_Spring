@@ -67,11 +67,6 @@ public class ReplyBoardController {
 		return "sboard/readPage";
 	}
 	
-	@PostMapping("remove")
-	public String remove(@RequestParam("bno") int bno) throws Exception {
-		service.remove(bno);
-		return "redirect:/sboard/listReply";
-	}
 	
 	@GetMapping("modifyPage")
 	public String modifyPage(Model model, @RequestParam("bno") int bno) throws Exception {
@@ -89,7 +84,32 @@ public class ReplyBoardController {
 		return "redirect:/sboard/read";
 	}
 	
+	@PostMapping("remove")
+	public String remove(@RequestParam("bno") int bno) throws Exception {
+		service.remove(bno);
+		return "redirect:/sboard/listReply";
+	}
 	
+	@GetMapping("replyRegister")
+	public String replyRegister(@RequestParam("bno") int bno, @ModelAttribute("cri") SearchCriteria cri,
+			Model model) throws Exception {
+		System.out.println("답글 작성 페이지 요청 : " + bno + " / cri : " + cri);
+		model.addAttribute("boardVO", service.readReply(bno));
+		return "sboard/replyRegister";
+	}
+	
+	@PostMapping("replyRegister")
+	public String replyRegister(SearchCriteria cri, BoardVO board, RedirectAttributes rttr) throws Exception {
+		System.out.println("답글 등록 요청 / BoardVO : " + board);
+		
+		service.replyRegister(board);
+		
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		return "redirect:/sboard/listReply";
+	}
 	
 	@GetMapping("/getAttach/{bno}")
 	@ResponseBody

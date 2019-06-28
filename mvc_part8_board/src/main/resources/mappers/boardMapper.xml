@@ -96,6 +96,18 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		INSERT INTO tbl_attach(fullname,bno) 
 		VALUES(#{fullName},#{bno})
 	</insert>
+	
+	<!-- 답글들의 정렬값 수정 -->
+	<update id="updateReply" parameterType="net.koreate.vo.BoardVO">
+		UPDATE re_tbl_board SET seq = seq + 1
+		WHERE origin = #{origin} AND seq > #{seq}
+	</update>
+	
+	<!-- 답글 등록 -->
+	<insert id="registerReply" parameterType="net.koreate.vo.BoardVO">
+		INSERT INTO re_tbl_board(title, content, writer, origin, depth, seq, uno)
+		VALUES(#{title}, #{content}, #{writer}, #{origin}, #{depth}, #{seq}, #{uno})
+	</insert>
 </mapper>
 
 
