@@ -67,6 +67,7 @@
 		<input type="button" id="listBtn" value="LIST"/>
 		
 		<form id="readForm" method="post">
+			<input type="hidden" name="csrf_token" value="${csrf_token}"/>
 			<input type="hidden" name="bno" value="${boardVO.bno}"/>
 			<input type="hidden" name="page" value="${cri.page}"/>
 			<input type="hidden" name="perPageNum" value="${cri.perPageNum}"/>

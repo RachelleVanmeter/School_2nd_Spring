@@ -41,6 +41,14 @@
 			<exclude-mapping path="/sboard/getAttach/*"/>
 			<beans:bean class="net.koreate.interceptor.AuthInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/sboard/read"/>
+			<beans:bean class="net.koreate.interceptor.CreateTokenInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/sboard/remove"/>
+			<beans:bean class="net.koreate.interceptor.CheckTokenInterceptor"/>
+		</interceptor>
 		
 	</interceptors>
 
