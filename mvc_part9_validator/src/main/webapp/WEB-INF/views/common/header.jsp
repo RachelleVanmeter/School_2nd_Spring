@@ -9,6 +9,9 @@
 <link href="/resources/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" src="/resources/bower_components/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.validate.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" type="text/css" />
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
 	<header class="cantainer">
