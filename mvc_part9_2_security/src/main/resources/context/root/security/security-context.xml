@@ -5,15 +5,28 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- login logout http-config -->
-	<security:http auto-config="true">
+	<bean id="customLoginSuccessHandler" class="net.koreate.security.CustomLoginSuccessHandler"/>
 	
+	<!-- login logout http-config -->
+	<!-- use-expressions="false" -->
+	<!-- auto-config="true" -->
+	<security:http  use-expressions="true">
+		<security:intercept-url pattern="/test/all" access="permitAll"/>
+		<security:intercept-url pattern="/test/memberShip" access="hasAnyRole('ROLE_MEMBERSHIP', 'ROLE_MASTER')"/>
+		<security:intercept-url pattern="/test/master" access="hasRole('ROLE_MASTER')"/>
+		<!-- csrf token 사용 않함 -->
+		<!-- <security:csrf disabled="true"/> -->
+		<security:form-login login-page="/login" authentication-success-handler-ref="customLoginSuccessHandler"/>
+		<security:access-denied-handler error-page="/errorForbidden"/>
+		<security:logout logout-url="/logout" invalidate-session="true" logout-success-url="/"/>
 	</security:http>
 	
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:user-service>
-				<security:user name="member" password="member" authorities="ROLE_MEMBER"/>
+				<security:user name="member" password="{noop}member" authorities="ROLE_MEMBERSHIP"/>
+				<security:user name="master" password="{noop}master" authorities="ROLE_MASTER, ROLE_MEMBERSHIP"/>
+				<!-- <security:user name="master" password="{noop}master" authorities="ROLE_MASTER"/> -->
 			</security:user-service>
 		</security:authentication-provider>
 	</security:authentication-manager>

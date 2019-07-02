@@ -4,12 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>errorForbidden</title>
 </head>
 <body>
-	<a href="/test/master">master</a>
-	<a href="/test/memberShip">memberShip</a>
-	<a href="/test/all">all</a>
-	<a href="/logout">logout</a>
+	<h1>${msg}</h1>
+	<h2>관리자에게 문의해 주세요</h2>
 </body>
 </html>

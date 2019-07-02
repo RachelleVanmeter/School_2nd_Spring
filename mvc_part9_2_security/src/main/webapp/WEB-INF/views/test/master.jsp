@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="/test/master">master</a>
-	<a href="/test/memberShip">memberShip</a>
-	<a href="/test/all">all</a>
-	<a href="/logout">logout</a>
+	<h1>MASTER</h1>
 </body>
 </html>
