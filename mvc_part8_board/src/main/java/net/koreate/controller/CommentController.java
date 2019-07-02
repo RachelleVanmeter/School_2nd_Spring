@@ -59,7 +59,7 @@ public class CommentController {
 	public ResponseEntity<String> updata(@PathVariable("cno") int cno, @RequestBody CommentVO vo) {
 		System.out.println(cno + " // " + vo);
 		ResponseEntity<String> entity = null;
-		
+
 		try {
 			vo.setCno(cno);
 			cs.modifyComment(vo);
@@ -70,14 +70,14 @@ public class CommentController {
 		}
 		return entity;
 	}
-	
+
 	// 덧슬 수정
 	// /comments/cno
 	@DeleteMapping("/{cno}")
 	public ResponseEntity<String> delete(@PathVariable("cno") int cno) {
 		System.out.println(cno);
 		ResponseEntity<String> entity = null;
-		
+
 		try {
 			cs.removeComment(cno);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);

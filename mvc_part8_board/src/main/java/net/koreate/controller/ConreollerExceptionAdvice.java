@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @ControllerAdvice
 public class ConreollerExceptionAdvice {
-	
+
 	@ExceptionHandler(Exception.class)
 	private ModelAndView errorModelAndView(Exception e) {
 		System.out.println("예외 발생");
@@ -15,5 +15,5 @@ public class ConreollerExceptionAdvice {
 		mav.addObject("exception", e);
 		return mav;
 	}
-	
+
 }

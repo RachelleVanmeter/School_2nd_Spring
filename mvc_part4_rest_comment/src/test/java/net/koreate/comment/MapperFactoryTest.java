@@ -12,9 +12,8 @@ import net.koreate.comment.vo.CommentVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-	/* "file:src/main/resources/context/root-context.xml" */
-	"classpath:context/root-context.xml"
-})
+		/* "file:src/main/resources/context/root-context.xml" */
+		"classpath:context/root-context.xml" })
 public class MapperFactoryTest {
 
 	@Inject

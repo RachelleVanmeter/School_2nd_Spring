@@ -11,9 +11,7 @@ import net.koreate.db.dao.MemberDao;
 import net.koreate.db.vo.MemberVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({
-	"file:src/main/webapp/WEB-INF/spring/**/root-context.xml"
-})
+@ContextConfiguration({ "file:src/main/webapp/WEB-INF/spring/**/root-context.xml" })
 public class MemberDaoTest {
 
 	@Inject

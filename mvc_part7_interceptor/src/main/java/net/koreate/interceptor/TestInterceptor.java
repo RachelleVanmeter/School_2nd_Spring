@@ -9,17 +9,14 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class TestInterceptor extends HandlerInterceptorAdapter{
+public class TestInterceptor extends HandlerInterceptorAdapter {
 
 	// Controller 요청 처리전
 	@Override
-	public boolean preHandle(
-			HttpServletRequest request, 
-			HttpServletResponse response, 
-			Object handler)
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		System.out.println("preHandle START");
-		HandlerMethod method =(HandlerMethod)handler;
+		HandlerMethod method = (HandlerMethod) handler;
 		Method methodObj = method.getMethod();
 		System.out.println("Bean : " + method.getBean());
 		System.out.println("method : " + methodObj);
@@ -32,19 +29,16 @@ public class TestInterceptor extends HandlerInterceptorAdapter{
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		System.out.println("postHandle START");
-		
+
 		System.out.println("postHandle END");
 	}
 
-	// DispatcherServlet 화면 전송 완료 후 
+	// DispatcherServlet 화면 전송 완료 후
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
 		System.out.println("afterCompletion start");
 		System.out.println("afterCompletion end");
 	}
-	
-	
-	
 
 }

@@ -45,15 +45,14 @@ public class UploadController {
 		String result = utils.deleteFile(fileName);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/deleteAllFiles")
 	public ResponseEntity<String> deleteAllFiles(@RequestParam("files[]") String[] files) throws IOException {
 		System.out.println("deleteAllFiles");
-		/*for (String file : files) {
-			System.out.println(file);
-		}*/
+		/*
+		 * for (String file : files) { System.out.println(file); }
+		 */
 		return new ResponseEntity<String>(UploadUtils.getInstance(context).deleteAllFiles(files), HttpStatus.OK);
 	}
-	
 
 }

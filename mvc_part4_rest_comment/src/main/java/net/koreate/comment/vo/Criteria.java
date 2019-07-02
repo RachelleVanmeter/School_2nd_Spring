@@ -40,9 +40,7 @@ public class Criteria {
 
 	@Override
 	public String toString() {
-		return "Criteria { [ page : " + this.getPage()
-				+ " ], [ perPageNum : " + this.getPerPageNum()
-				+ " ] }";
+		return "Criteria { [ page : " + this.getPage() + " ], [ perPageNum : " + this.getPerPageNum() + " ] }";
 	}
 
 }

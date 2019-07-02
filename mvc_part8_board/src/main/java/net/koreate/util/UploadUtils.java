@@ -199,7 +199,7 @@ public class UploadUtils {
 
 		return "DELETED";
 	}
-	
+
 	public String deleteAllFiles(String[] files) {
 		for (String file : files) {
 			String format = file.substring(file.lastIndexOf(".") + 1);

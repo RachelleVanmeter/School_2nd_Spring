@@ -11,80 +11,76 @@ import net.koreate.test.vo.ProductVO;
 
 @Controller
 public class MainController {
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main() {
 		return "main";
 	}
-	
+
 	@RequestMapping(value = "sendMsg", method = RequestMethod.GET)
 	public String sendMsg() {
 		return "sendMsg";
 	}
-	
+
 	// redirect test
-	/*@RequestMapping(value = "sendMsg", method = RequestMethod.GET)
-	public String sendMsg(Model model, HttpSession session) {
-		if(session.getAttribute("productVO") != null) {
-			System.out.println("model 객체 전달");
-			model.addAttribute("productVO",session.getAttribute("productVO"));
-			System.out.println("produceVO 삭제");
-			session.removeAttribute("productVO");
-		}
-		return "sendMsg";
-	}*/
-	
+	/*
+	 * @RequestMapping(value = "sendMsg", method = RequestMethod.GET) public String
+	 * sendMsg(Model model, HttpSession session) {
+	 * if(session.getAttribute("productVO") != null) {
+	 * System.out.println("model 객체 전달");
+	 * model.addAttribute("productVO",session.getAttribute("productVO"));
+	 * System.out.println("produceVO 삭제"); session.removeAttribute("productVO"); }
+	 * return "sendMsg"; }
+	 */
+
 	@RequestMapping(value = "sendMsg", method = RequestMethod.POST)
 	public String sendMsg(String msg, Model model) {
 		System.out.println(msg);
-		model.addAttribute("msg",msg);
+		model.addAttribute("msg", msg);
 		return "result";
 	}
-	
+
 	@RequestMapping(value = "registerProduct", method = RequestMethod.GET)
-	public void registerProduct() {}
-	
-	
-	/*@RequestMapping(value = "registerProduct", method = RequestMethod.POST)
-	public String registerProduct(Model model, @RequestParam("name") String name,
-			@RequestParam(name = "price", required = false, defaultValue = "0") int price, ProductVO productVO) {
-		System.out.println("register product 호출");
-		System.out.println("상품이름 : " + name);
-		System.out.println("상품가격 : " + price);
-		
-		ProductVO product = new ProductVO(name,price);
-		// productVO
-		model.addAttribute(product);
-		//model.addAttribute("productVO",product);
-		System.out.println(productVO.getName()+" // " + productVO.getPrice());
-		
-		return "result";
-	}*/
-	
-	
-	/*@RequestMapping(value = "registerProduct", method = RequestMethod.POST)
-	public String registerProduct(@ModelAttribute("productVO") ProductVO productVO) {
-		System.out.println("registerProduct 호출");
-		System.out.println(productVO);
-		return "result";
-	}*/
-	
-	/*@RequestMapping(value = "registerProduct", method = RequestMethod.POST)
-	public String registerProduct(@ModelAttribute("productVO") ProductVO productVO, HttpSession session) {
-		System.out.println("registerProduct 호출");
-		System.out.println(productVO);
+	public void registerProduct() {
+	}
 
-		session.setAttribute("productVO", productVO);
-		return "redirect:sendMsg";
-	}*/
-	
+	/*
+	 * @RequestMapping(value = "registerProduct", method = RequestMethod.POST)
+	 * public String registerProduct(Model model, @RequestParam("name") String name,
+	 * 
+	 * @RequestParam(name = "price", required = false, defaultValue = "0") int
+	 * price, ProductVO productVO) { System.out.println("register product 호출");
+	 * System.out.println("상품이름 : " + name); System.out.println("상품가격 : " + price);
+	 * 
+	 * ProductVO product = new ProductVO(name,price); // productVO
+	 * model.addAttribute(product); //model.addAttribute("productVO",product);
+	 * System.out.println(productVO.getName()+" // " + productVO.getPrice());
+	 * 
+	 * return "result"; }
+	 */
 
-	@RequestMapping(value= "registerProduct", method = RequestMethod.POST)
+	/*
+	 * @RequestMapping(value = "registerProduct", method = RequestMethod.POST)
+	 * public String registerProduct(@ModelAttribute("productVO") ProductVO
+	 * productVO) { System.out.println("registerProduct 호출");
+	 * System.out.println(productVO); return "result"; }
+	 */
+
+	/*
+	 * @RequestMapping(value = "registerProduct", method = RequestMethod.POST)
+	 * public String registerProduct(@ModelAttribute("productVO") ProductVO
+	 * productVO, HttpSession session) { System.out.println("registerProduct 호출");
+	 * System.out.println(productVO);
+	 * 
+	 * session.setAttribute("productVO", productVO); return "redirect:sendMsg"; }
+	 */
+
+	@RequestMapping(value = "registerProduct", method = RequestMethod.POST)
 	public String registerProduct(@ModelAttribute("productVO") ProductVO productVO, RedirectAttributes rttr) {
 		System.out.println("registerProduct 호출");
 		System.out.println(productVO);
-		rttr.addFlashAttribute("productVO",productVO);
+		rttr.addFlashAttribute("productVO", productVO);
 		return "redirect:sendMsg";
 	}
-	
+
 }

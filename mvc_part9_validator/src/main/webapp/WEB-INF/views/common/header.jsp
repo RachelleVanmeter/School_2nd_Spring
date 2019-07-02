@@ -38,9 +38,14 @@
 							<li><a href="#">문의사항</a></li>
 						</ul>
 					</li>
-					<li><a href="/user/login">로그인</a></li>
-					<li><a href="/user/join">회원가입</a></li>
-					<li><a href="/user/joinVal">회원가입(validation)</a></li>
+					<c:if test="${!empty userInfo}">
+						<li><a href="#">${userInfo.u_id}</a></li>
+					</c:if>
+					<c:if test="${empty userInfo}">
+						<li><a href="/user/login">로그인</a></li>
+						<li><a href="/user/join">회원가입</a></li>
+						<li><a href="/user/joinVal">회원가입(validation)</a></li>
+					</c:if>
 				</ul>
 			</div>
 		</nav>

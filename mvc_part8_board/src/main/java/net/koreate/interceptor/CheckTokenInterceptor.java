@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class CheckTokenInterceptor extends HandlerInterceptorAdapter {
-	
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -20,10 +20,10 @@ public class CheckTokenInterceptor extends HandlerInterceptorAdapter {
 			HttpSession session = request.getSession();
 			String token = (String) session.getAttribute("csrf_token");
 			System.out.println("session token : " + token);
-			
+
 			String requestToken = request.getParameter("csrf_token");
 			System.out.println("request token : " + requestToken);
-			
+
 			if (requestToken == null || requestToken == "" || !requestToken.equals(token)) {
 				response.setContentType("text/html; charset=utf-8");
 				PrintWriter out = response.getWriter();
@@ -34,8 +34,8 @@ public class CheckTokenInterceptor extends HandlerInterceptorAdapter {
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
-	
+
 }

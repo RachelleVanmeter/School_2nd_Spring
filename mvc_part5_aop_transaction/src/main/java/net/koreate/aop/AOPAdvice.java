@@ -19,7 +19,7 @@ import net.koreate.vo.MessageVo;
 @Component
 @Aspect
 public class AOPAdvice {
-	
+
 	@Before("execution(* net.koreate.service.MessageService*.*(..))")
 	public void startLog(JoinPoint join) {
 		log.info("------------------------------------------------");
@@ -33,7 +33,7 @@ public class AOPAdvice {
 		log.info("------------     END LOG BEFORE     ------------");
 		log.info("------------------------------------------------");
 	}
-	
+
 	@After("execution(* net.koreate.service.MessageService*.*(..))")
 	public void endLog(JoinPoint join) {
 		log.info("------------------------------------------------");
@@ -48,23 +48,23 @@ public class AOPAdvice {
 		log.info("------------       END LOG END      ------------");
 		log.info("------------------------------------------------");
 	}
-	
+
 	@Around("execution(* net.koreate.service.MessageServiceImpl.readMessage(..))")
 	public Object timeLlog(ProceedingJoinPoint pjp) throws Throwable {
 		log.info("------------------------------------------------");
 		log.info("------      START Around LOG BEFORE       ------");
 		long startTime = System.currentTimeMillis();
-		
+
 		Object o = pjp.proceed();
 		MessageVo message = (MessageVo) o;
 		message.setMessage("수정");
 		log.info("Obj : " + o.toString());
-		
+
 		long endTime = System.currentTimeMillis();
 		log.info(pjp.getSignature().getName() + " 걸린시간 : " + (endTime - startTime));
 		log.info("------       END Around LOG BEFORE        ------");
 		log.info("------------------------------------------------");
 		return o;
 	}
-	
+
 }

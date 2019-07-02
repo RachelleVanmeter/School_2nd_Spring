@@ -12,18 +12,19 @@ import net.koreate.vo.Criteria;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
-	
+
 	@Inject
 	SqlSession session;
-	
+
 	String namespase = "net.koreate.mappers.BoardMapper";
-	
+
 	String getResult(int result) {
 		String msg = "FAIL";
-		if (result > 0) msg = "SUCCESS";
+		if (result > 0)
+			msg = "SUCCESS";
 		return msg;
 	}
-	
+
 	@Override
 	public String register(BoardVo board) {
 		return getResult(session.insert(namespase + ".register", board));

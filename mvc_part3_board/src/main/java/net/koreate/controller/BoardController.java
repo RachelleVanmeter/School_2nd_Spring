@@ -70,8 +70,7 @@ public class BoardController {
 	}
 
 	@PostMapping("/delete")
-	public String delete(@RequestParam("bno") int bno, @ModelAttribute("page") int page,
-			RedirectAttributes rttr) {
+	public String delete(@RequestParam("bno") int bno, @ModelAttribute("page") int page, RedirectAttributes rttr) {
 		log.info("get delete called!!! " + bno);
 		String msg = service.remove(bno);
 		rttr.addFlashAttribute("result", msg);
@@ -99,8 +98,7 @@ public class BoardController {
 	}
 
 	@GetMapping("/readPage")
-	public String readPage(@RequestParam("bno") int bno, @RequestParam("page") int page,
-			RedirectAttributes rttr) {
+	public String readPage(@RequestParam("bno") int bno, @RequestParam("page") int page, RedirectAttributes rttr) {
 		log.info("get readPage called!!! " + bno);
 		service.updateViewCnt(bno);
 		rttr.addAttribute("bno", bno);
@@ -109,8 +107,7 @@ public class BoardController {
 	}
 
 	@GetMapping("/readDetail")
-	public String readDetail(@ModelAttribute("bno") int bno, @ModelAttribute("page") int page,
-			Model model) {
+	public String readDetail(@ModelAttribute("bno") int bno, @ModelAttribute("page") int page, Model model) {
 		log.info("get readDetail called!!! " + bno);
 		model.addAttribute("board", service.read(bno));
 		return "/board/readPage";

@@ -27,7 +27,10 @@ public class MysqlTest {
 			System.out.println("연결 정보가 일치하지 않습니다.");
 			e.printStackTrace();
 		} finally {
-			try { conn.close(); } catch (SQLException e) {}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+			}
 		}
 	}
 }

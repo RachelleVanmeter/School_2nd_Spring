@@ -25,13 +25,13 @@ public interface BoardService {
 
 	// 첨부 파일 목록
 	List<String> getAttach(int bno) throws Exception;
-	
+
 	// 게시물 삭제
 	void remove(int bno) throws Exception;
-	
+
 	// 게시물 수정
 	void modify(BoardVO vo) throws Exception;
-	
+
 	// 답글 등록
 	void replyRegister(BoardVO board) throws Exception;
 }

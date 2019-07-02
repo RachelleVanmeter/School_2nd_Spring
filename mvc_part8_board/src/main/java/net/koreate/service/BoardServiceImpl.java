@@ -20,7 +20,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Inject
 	BoardDAO dao;
-	
+
 	@Inject
 	CommentDAO commentDAO;
 
@@ -90,14 +90,15 @@ public class BoardServiceImpl implements BoardService {
 	public void modify(BoardVO vo) throws Exception {
 		// 게시물 정보 갱신
 		dao.update(vo);
-		
+
 		// 첨부된 파일 정보 갱신
 		dao.deleteAttach(vo.getBno());
-		
+
 		String[] files = vo.getFiles();
-		
-		if (files == null) return;
-		
+
+		if (files == null)
+			return;
+
 		for (String fullName : files) {
 			Map<String, Object> paramMap = new HashMap<>();
 			paramMap.put("bno", vo.getBno());
@@ -110,15 +111,15 @@ public class BoardServiceImpl implements BoardService {
 	@Transactional
 	public void replyRegister(BoardVO board) throws Exception {
 		// 기존 글의 정렬 순서 수정
-		
+
 		// seq 오름차순이기 때문에 기존글의 seq 값을 높여 준다
 		dao.updateReply(board);
-		
+
 		System.out.println("넘어온 값 : " + board);
 		// 원본글 보다 아래로 내려가고 원본글의 답들인걸 표현하기 위해 깁이를 수정
 		board.setDepth(board.getDepth() + 1);
 		board.setSeq(board.getSeq() + 1);
-		
+
 		System.out.println("등록된 값 : " + board);
 		// 게시글 등록
 		dao.registerReply(board);

@@ -31,10 +31,10 @@ public interface BoardDAO {
 
 	// 첨부 파일 목록
 	List<String> getAttach(int bno) throws Exception;
-	
+
 	// 게시글 삭제
 	void delete(int bno) throws Exception;
-	
+
 	// 첨부파일 삭제
 	void deleteAttach(int bno) throws Exception;
 

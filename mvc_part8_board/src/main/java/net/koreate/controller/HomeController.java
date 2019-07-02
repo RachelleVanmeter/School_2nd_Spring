@@ -36,7 +36,7 @@ public class HomeController {
 
 		return "home";
 	}
-	
+
 	@GetMapping("/error404")
 	public String error404() {
 		return "common/error404";

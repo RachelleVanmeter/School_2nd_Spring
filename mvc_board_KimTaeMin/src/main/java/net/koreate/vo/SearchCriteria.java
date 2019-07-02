@@ -23,8 +23,6 @@ public class SearchCriteria extends Criteria {
 
 	@Override
 	public String toString() {
-		return "SearchCriteria { [ searchType : " + this.searchType
-				+ " ], [ Keyword : " + this.Keyword
-				+ " ] }";
+		return "SearchCriteria { [ searchType : " + this.searchType + " ], [ Keyword : " + this.Keyword + " ] }";
 	}
 }

@@ -14,10 +14,10 @@ import net.koreate.vo.UserVo;
 
 @Service
 public class MessageServiceImpl implements MessageService {
-	
+
 	@Inject
 	MessageDao mDao;
-	
+
 	@Inject
 	UserDao uDao;
 
@@ -28,7 +28,7 @@ public class MessageServiceImpl implements MessageService {
 		user.setUid(message.getSender());
 		user.setUpoint(10);
 		uDao.updatePoint(user);
-		
+
 		mDao.create(message);
 	}
 
@@ -36,11 +36,11 @@ public class MessageServiceImpl implements MessageService {
 	public MessageVo readMessage(int mno, String uid) throws Exception {
 		mDao.updateMessage(mno);
 		UserVo user = new UserVo();
-		
+
 		user.setUid(uid);
 		user.setUpoint(5);
 		uDao.updatePoint(user);
-		
+
 		MessageVo message = mDao.readMessage(mno);
 		return message;
 	}
@@ -49,5 +49,5 @@ public class MessageServiceImpl implements MessageService {
 	public List<MessageVo> list() throws Exception {
 		return mDao.list();
 	}
-	
+
 }

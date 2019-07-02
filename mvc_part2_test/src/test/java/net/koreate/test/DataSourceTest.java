@@ -12,14 +12,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations= {
-		"file:src/main/webapp/WEB-INF/spring/root-context.xml"
-})
+@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/root-context.xml" })
 public class DataSourceTest {
-	
+
 	@Inject
 	DataSource ds;
-	
+
 	@Test
 	public void test() {
 		Connection conn = null;
@@ -30,9 +28,12 @@ public class DataSourceTest {
 			System.out.println("연결정보 오류");
 			e.printStackTrace();
 		} finally {
-			try { conn.close(); } catch (SQLException e) {}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+			}
 		}
-		
+
 	}
-	
+
 }

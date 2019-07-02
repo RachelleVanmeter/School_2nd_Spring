@@ -13,7 +13,7 @@ import net.koreate.vo.PageMaker;
 
 @Service
 public class BoardServiceImpl implements BoardService {
-	
+
 	@Inject
 	BoardDao dao;
 
@@ -55,5 +55,5 @@ public class BoardServiceImpl implements BoardService {
 		pageMaker.setTotalCount(totalCount);
 		return pageMaker;
 	}
-	
+
 }

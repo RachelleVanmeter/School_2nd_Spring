@@ -27,7 +27,10 @@ public class MysqlConnectionTest {
 			e.printStackTrace();
 			System.out.println("계정 정보 오류");
 		} finally {
-			try { conn.close(); } catch (SQLException e) {}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+			}
 		}
 	}
 

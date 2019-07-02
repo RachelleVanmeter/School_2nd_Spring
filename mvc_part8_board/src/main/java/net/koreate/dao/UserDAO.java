@@ -22,7 +22,7 @@ public interface UserDAO {
 	// 아이디와 비밀번호로 사용자 정보 확인
 	@Select("SELECT * FROM tbl_user WHERE uid = #{uid} AND upw = #{upw}")
 	UserVO signIn(LoginDTO dto) throws Exception;
-	
+
 	// ban IP
 	@Select("SELECT * FROM ban_ip WHERE ip = #{ip}")
 	BanIPVO getBanIPVO(String ip) throws Exception;

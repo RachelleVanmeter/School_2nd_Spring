@@ -17,6 +17,7 @@ public class HomeController {
 	}
 
 	@GetMapping("test")
-	public void test() {}
+	public void test() {
+	}
 
 }

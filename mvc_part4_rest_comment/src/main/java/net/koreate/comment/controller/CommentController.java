@@ -92,8 +92,7 @@ public class CommentController {
 	}
 
 	@GetMapping("/{bno}/{page}")
-	public ResponseEntity<Map<String, Object>> listPage(@PathVariable("bno") int bno,
-			@PathVariable("page") int page) {
+	public ResponseEntity<Map<String, Object>> listPage(@PathVariable("bno") int bno, @PathVariable("page") int page) {
 		ResponseEntity<Map<String, Object>> entity = null;
 
 		try {

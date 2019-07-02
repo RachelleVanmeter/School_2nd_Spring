@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class CreateTokenInterceptor extends HandlerInterceptorAdapter {
-	
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -19,5 +19,5 @@ public class CreateTokenInterceptor extends HandlerInterceptorAdapter {
 		session.setAttribute("csrf_token", token);
 		return true;
 	}
-	
+
 }

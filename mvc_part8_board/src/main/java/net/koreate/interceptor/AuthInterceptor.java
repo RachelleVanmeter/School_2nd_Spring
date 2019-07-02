@@ -12,20 +12,20 @@ import net.koreate.vo.BoardVO;
 import net.koreate.vo.UserVO;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter {
-	
+
 	@Inject
 	BoardService service;
-	
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		System.out.println("AuthInterceptor preHandle");
 		String requestUri = request.getRequestURI();
 		System.out.println(requestUri);
-		
+
 		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("userInfo");
-		
+
 		if (obj == null) {
 			System.out.println("사용자 정보 없음");
 			response.sendRedirect("/user/signIn");
@@ -35,10 +35,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 				System.out.println("새글 작성");
 				return true;
 			}
-			
+
 			String num = request.getParameter("bno");
 			System.out.println("게시물 번호 : " + num);
-			
+
 			UserVO user = (UserVO) obj;
 			if (num != null && !num.equals("")) {
 				int bno = Integer.parseInt(num);
@@ -46,7 +46,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 					System.out.println("답글 작성");
 					return true;
 				}
-				
+
 				BoardVO board = service.readReply(bno);
 				System.out.println("수정 & 삭제 요청시");
 				if (board.getUno() == user.getUno()) {
@@ -61,5 +61,5 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		System.out.println("AuthInterceptor preHandle");
 		return true;
 	}
-	
+
 }

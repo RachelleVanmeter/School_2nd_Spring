@@ -13,22 +13,17 @@ import net.koreate.test.dao.MemberDAO;
 import net.koreate.test.vo.MemberVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {
-	"file:src/main/webapp/WEB-INF/spring/root-context.xml"
-})
+@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/root-context.xml" })
 public class MemberDAOTest {
 
 	@Inject
 	MemberDAO dao;
 
-	/*@Test
-	public void testInsertMember() {
-		MemberVO member = new MemberVO();
-		member.setUserid("user01");
-		member.setUserpw("pass01");
-		member.setUsername("이순신");
-		dao.insertMember(member);
-	}*/
+	/*
+	 * @Test public void testInsertMember() { MemberVO member = new MemberVO();
+	 * member.setUserid("user01"); member.setUserpw("pass01");
+	 * member.setUsername("이순신"); dao.insertMember(member); }
+	 */
 
 	@Test
 	public void readMember() {

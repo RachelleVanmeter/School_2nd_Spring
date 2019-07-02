@@ -61,56 +61,56 @@ public class ReplyBoardController {
 	}
 
 	@GetMapping("read")
-	public String readPage(Model model, @RequestParam("bno") int bno, @ModelAttribute("cri") SearchCriteria cri) throws Exception {
+	public String readPage(Model model, @RequestParam("bno") int bno, @ModelAttribute("cri") SearchCriteria cri)
+			throws Exception {
 		// 게시물 정보
 		model.addAttribute("boardVO", service.readReply(bno));
 		return "sboard/readPage";
 	}
-	
-	
+
 	@GetMapping("modifyPage")
 	public String modifyPage(Model model, @RequestParam("bno") int bno) throws Exception {
 		model.addAttribute("boardVO", service.readReply(bno));
 		return "sboard/modifyPage";
 	}
-	
+
 	@PostMapping("modifyPage")
 	public String modifyPage(BoardVO vo, RedirectAttributes rttr) throws Exception {
 		System.out.println("modifyPage :" + vo);
-		
+
 		service.modify(vo);
-		
+
 		rttr.addAttribute("bno", vo.getBno());
 		return "redirect:/sboard/read";
 	}
-	
+
 	@PostMapping("remove")
 	public String remove(@RequestParam("bno") int bno) throws Exception {
 		service.remove(bno);
 		return "redirect:/sboard/listReply";
 	}
-	
+
 	@GetMapping("replyRegister")
-	public String replyRegister(@RequestParam("bno") int bno, @ModelAttribute("cri") SearchCriteria cri,
-			Model model) throws Exception {
+	public String replyRegister(@RequestParam("bno") int bno, @ModelAttribute("cri") SearchCriteria cri, Model model)
+			throws Exception {
 		System.out.println("답글 작성 페이지 요청 : " + bno + " / cri : " + cri);
 		model.addAttribute("boardVO", service.readReply(bno));
 		return "sboard/replyRegister";
 	}
-	
+
 	@PostMapping("replyRegister")
 	public String replyRegister(SearchCriteria cri, BoardVO board, RedirectAttributes rttr) throws Exception {
 		System.out.println("답글 등록 요청 / BoardVO : " + board);
-		
+
 		service.replyRegister(board);
-		
+
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		rttr.addAttribute("searchType", cri.getSearchType());
 		rttr.addAttribute("keyword", cri.getKeyword());
 		return "redirect:/sboard/listReply";
 	}
-	
+
 	@GetMapping("/getAttach/{bno}")
 	@ResponseBody
 	public List<String> getAttach(@PathVariable("bno") int bno) throws Exception {

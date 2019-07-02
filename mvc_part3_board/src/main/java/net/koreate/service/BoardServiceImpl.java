@@ -79,7 +79,8 @@ public class BoardServiceImpl implements BoardService {
 
 	public String getResult(int result) {
 		String msg = "FAIL";
-		if (result > 0) msg = "SUCCESS";
+		if (result > 0)
+			msg = "SUCCESS";
 		return msg;
 	}
 
