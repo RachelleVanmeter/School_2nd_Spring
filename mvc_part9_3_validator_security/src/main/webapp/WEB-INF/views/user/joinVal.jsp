@@ -83,6 +83,7 @@
 					</td>
 				</tr>
 			</table>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		</form>
 	</div>
 	<script type="text/javascript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -150,7 +151,15 @@
 				u_id: {
 					required: true,
 					email: true,
-					remote: {type: "post", url: "/user/uIdCheck"}
+					remote: {
+						type: "post",
+						url: "/user/uIdCheck",
+						data: {
+							'${_csrf.parameterName}': function() {
+								return '${_csrf.token}';
+							}
+						}
+					}
 				}, u_pw: {
 					required: true,
 					minlength: 6,

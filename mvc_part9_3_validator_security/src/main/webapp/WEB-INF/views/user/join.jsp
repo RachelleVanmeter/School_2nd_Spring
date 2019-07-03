@@ -80,6 +80,7 @@
 					</td>
 				</tr>
 			</table>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		</form>
 	</div>
 	<script type="text/javascript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -192,7 +193,8 @@
 					url: '/user/uIdCheck',
 					dataType: 'json',
 					data: {
-						u_id : $('#u_id').val()
+						u_id : $('#u_id').val(),
+						'${_csrf.parameterName}': '${_csrf.token}'
 					},
 					success: function(data) {
 						console.log('isChecked : ' + data);

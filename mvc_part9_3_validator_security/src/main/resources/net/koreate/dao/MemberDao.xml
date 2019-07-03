@@ -30,4 +30,12 @@
 		LEFT OUTER JOIN validation_member_auth mauth
 		ON mem.u_id = mauth.u_id WHERE mem.u_id = #{u_id};
 	</select>
+	<insert id="memberJoin" parameterType="net.koreate.vo.MemberVo">
+		INSERT INTO validation_member(u_id, u_pw, u_phone, u_birth, u_name, u_addr, u_addr_detail, u_addr_post)
+		VALUES(#{u_id}, #{u_pw}, #{u_phone}, #{u_birth}, #{u_name}, #{u_addr}, #{u_addr_detail}, #{u_addr_post})
+	</insert>
+	<insert id="insertAuth" parameterType="java.lang.String">
+		INSERT INTO validation_member_auth(u_id, u_auth)
+		VALUES(#{u_id}, 'ROLE_USER')
+	</insert>
 </mapper>
