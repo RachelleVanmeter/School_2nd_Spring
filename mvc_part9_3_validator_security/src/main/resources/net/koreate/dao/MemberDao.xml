@@ -38,4 +38,7 @@
 		INSERT INTO validation_member_auth(u_id, u_auth)
 		VALUES(#{u_id}, 'ROLE_USER')
 	</insert>
+	<update id="updateVisitDate" parameterType="java.lang.String">
+		UPDATE validation_member SET u_visit_date = now() WHERE u_id= #{u_id}
+	</update>
 </mapper>

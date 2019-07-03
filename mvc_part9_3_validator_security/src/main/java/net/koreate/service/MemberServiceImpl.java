@@ -36,5 +36,10 @@ public class MemberServiceImpl implements MemberService {
 	public boolean getMemberbyID(String u_id) throws Exception {
 		return dao.getMemberbyID(u_id) == null ? true : false;
 	}
+
+	@Override
+	public void updateVisitDate(String u_id) throws Exception {
+		dao.updateVisitDate(u_id);
+	}
 	
 }

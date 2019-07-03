@@ -3,6 +3,7 @@ package net.koreate.controller;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,8 +20,9 @@ public class UserController {
 	MemberService service;
 
 	@GetMapping("/user/login")
-	public void login() {
+	public void login(String message, Model model) {
 		log.info("get user login call!!!");
+		model.addAttribute("message", message);
 	}
 
 	@GetMapping("/user/join")

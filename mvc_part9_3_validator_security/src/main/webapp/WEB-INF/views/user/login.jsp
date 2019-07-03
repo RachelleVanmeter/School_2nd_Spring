@@ -10,10 +10,13 @@
 		}
 	</style>
 	<div class="container">
-		<form action="/user/loginPost" id="loginForm" method="post">
+		<form action="/user/login" id="loginForm" method="post">
 			<table class="container table table-bordered maxWidth">
 				<tr>
-					<th colspan="2" class="text-center"><h1>LOGIN PAGE</h1></th>
+					<th colspan="2" class="text-center">
+						<h1>LOGIN PAGE</h1>
+						<h2>${message}</h2>
+					</th>
 				</tr>
 				<tr>
 					<td>아이디(email)</td>
@@ -38,6 +41,7 @@
 					</td>
 				</tr>
 			</table>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token }">
 		</form>
 	</div>
 	<script type="text/javascript">
