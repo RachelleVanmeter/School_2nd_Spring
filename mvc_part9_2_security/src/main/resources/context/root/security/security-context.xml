@@ -5,6 +5,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
+	<bean id="customUserDetailService" class="net.koreate.security.CustomUserDetailService"/>
 	<bean id="customLoginSuccessHandler" class="net.koreate.security.CustomLoginSuccessHandler"/>
 	<!-- PasswordEncoder 인터페이스를 구현한 암호화 객체 -->
 	<!-- 패스워드에 암호화 진행을 하지 않는 구현객체 -->
@@ -26,17 +27,28 @@
 		<!-- <security:csrf disabled="true"/> -->
 		<security:form-login login-page="/login" authentication-success-handler-ref="customLoginSuccessHandler"/>
 		<security:access-denied-handler error-page="/errorForbidden"/>
-		<security:logout logout-url="/logout" invalidate-session="true" logout-success-url="/"/>
+		<security:logout logout-url="/logout" invalidate-session="true" logout-success-url="/" delete-cookies="remember-me, JSESSIONID"/>
+		<security:remember-me token-validity-seconds="2419200"/>
+		
+		<security:session-management invalid-session-url="/login">
+			<security:concurrency-control max-sessions="1" expired-url="/login"/>
+		</security:session-management>
 	</security:http>
 	
-	<security:authentication-manager>
+	<!-- <security:authentication-manager>
 		<security:authentication-provider>
 			<security:password-encoder ref="bcryptPasswordEncoder"/>
 			<security:user-service>
 				<security:user name="member" password="member" authorities="ROLE_MEMBERSHIP"/>
 				<security:user name="master" password="master" authorities="ROLE_MASTER, ROLE_MEMBERSHIP"/>
-				<!-- <security:user name="master" password="{noop}master" authorities="ROLE_MASTER"/> -->
+				<security:user name="master" password="{noop}master" authorities="ROLE_MASTER"/>
 			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager> -->
+	
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="customUserDetailService">
+			<security:password-encoder ref="bcryptPasswordEncoder" />
 		</security:authentication-provider>
 	</security:authentication-manager>
 	
