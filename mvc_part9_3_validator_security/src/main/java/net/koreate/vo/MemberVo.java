@@ -1,6 +1,7 @@
 package net.koreate.vo;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -20,4 +21,5 @@ public class MemberVo {
 	private Date u_date;
 	private Date u_visit_date;
 	private String u_withraw;
+	private List<AuthVo> authList;
 }

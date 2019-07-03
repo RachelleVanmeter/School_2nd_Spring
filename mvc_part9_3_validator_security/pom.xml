@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.koreate</groupId>
 	<artifactId>controller</artifactId>
-	<name>mvc_part9_validator</name>
+	<name>mvc_part9_3_validator_security</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<repositories>
