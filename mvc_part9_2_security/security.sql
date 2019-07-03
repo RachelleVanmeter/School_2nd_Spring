@@ -16,3 +16,7 @@ INSERT INTO security_member_auth(uid, auth) VALUES('admin99', 'ROLE_MEMBERSHIP')
 
 SELECT * FROM security_member;
 SELECT * FROM security_member_auth;
+
+SELECT mem.uid, upw, uname, regdate, updatedate, auth FROM security_member mem
+LEFT OUTER JOIN security_member_auth mauth
+ON mem.uid = mauth.uid WHERE mem.uid = 'admin99';

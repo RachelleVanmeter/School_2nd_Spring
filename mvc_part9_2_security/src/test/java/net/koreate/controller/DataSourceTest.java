@@ -13,6 +13,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import net.koreate.dao.MemberDao;
+import net.koreate.vo.AuthVo;
+import net.koreate.vo.MemberVo;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 	"classpath:context/root/root-context.xml",
@@ -62,7 +66,7 @@ public class DataSourceTest {
 		}
 	}
 	
-	@Test
+	//@Test
 	public void testInsertAuth() {
 		String sql = "INSERT INTO security_member_auth(uid, auth) VALUES(?, ?)";
 		Connection conn = null;
@@ -90,6 +94,18 @@ public class DataSourceTest {
 		finally {
 			if (pstmt != null) { try { pstmt.close(); } catch (SQLException e) {} }
 			if (conn != null) { try { conn.close(); } catch (SQLException e) {} }
+		}
+	}
+	
+	@Inject
+	MemberDao dao;
+	
+	@Test
+	public void testRead() throws Exception {
+		MemberVo member = dao.read("admin99");
+		System.out.println("MEMBER : " + member);
+		for (AuthVo auth : member.getAuthList()) {
+			System.out.println("auth : " + auth);
 		}
 	}
 	
