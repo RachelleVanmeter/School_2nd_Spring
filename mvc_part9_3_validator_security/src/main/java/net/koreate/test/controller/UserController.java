@@ -13,42 +13,41 @@ import net.koreate.test.vo.ValidationMemberVO;
 
 @Controller
 public class UserController {
-	
+
 	@Inject
 	MemberService ms;
-	
+
 	@GetMapping("/user/login")
 	public String login(String message, Model model) {
-		model.addAttribute("message",message);
+		model.addAttribute("message", message);
 		return "/user/login";
 	}
-	
+
 	@GetMapping("/user/join")
 	public String join() {
 		return "/user/join";
 	}
-	
+
 	@GetMapping("/user/joinVal")
 	public String joinVal() {
 		return "/user/joinVal";
 	}
-	
+
 	@PostMapping("/user/joinPost")
-	public String join(ValidationMemberVO vo) throws Exception{
-		System.out.println("joinPost : "+vo);
+	public String join(ValidationMemberVO vo) throws Exception {
+		System.out.println("joinPost : " + vo);
 		ms.memberJoin(vo);
 		return "redirect:/user/login";
 	}
-	
+
 	@GetMapping("/user/logout")
 	public String logout() {
 		return "/user/logout";
 	}
-	
-	
+
 	@PostMapping("/user/uIdCheck")
 	@ResponseBody
-	public boolean uIdCheck(String u_id) throws Exception{
+	public boolean uIdCheck(String u_id) throws Exception {
 		return ms.getMemberByID(u_id);
 	}
 }

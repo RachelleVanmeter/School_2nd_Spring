@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 public class ValidationMemberVO {
-	
+
 	private int u_no;
 	private String u_id;
 	private String u_pw;
@@ -22,7 +22,7 @@ public class ValidationMemberVO {
 	private Date u_date;
 	private Date u_visit_date;
 	private String u_withdraw;
-	
+
 	private List<AuthVO> authList;
 
 }

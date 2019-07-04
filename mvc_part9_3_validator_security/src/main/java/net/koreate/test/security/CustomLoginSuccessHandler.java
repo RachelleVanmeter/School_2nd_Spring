@@ -13,28 +13,26 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import net.koreate.test.service.MemberService;
 import net.koreate.test.vo.ValidationMemberVO;
 
-public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
+public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 
 	@Inject
 	MemberService ms;
-	
+
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-			Authentication auth) throws IOException, ServletException {
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
+			throws IOException, ServletException {
 		System.out.println("Login SUCCESS");
-		
-		CustomMember member = (CustomMember)auth.getPrincipal();
+
+		CustomMember member = (CustomMember) auth.getPrincipal();
 		ValidationMemberVO vo = member.getMember();
-		System.out.println("losgin member : "+vo);
-				
+		System.out.println("losgin member : " + vo);
+
 		System.out.println(member.getUsername());
 		System.out.println(member.getPassword());
 		System.out.println(member.getAuthorities());
-		
+
 		ms.updateVisitDate(vo.getU_id());
 		response.sendRedirect("/");
 	}
-	
-	
 
 }

@@ -72,6 +72,22 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		ORDER BY u_no DESC
 	</select>
 	
+	<!-- 권한 목록 -->
+	<select id="getAuthList" resultType="net.koreate.test.vo.AuthVO">
+		SELECT * FROM validation_member_auth 
+		WHERE u_id = #{u_id}
+	</select>
+	
+	<!-- 권한 삭제 -->
+	<delete id="deleteAuth" parameterType="net.koreate.test.vo.AuthVO">
+		DELETE FROM validation_member_auth 
+		WHERE u_id = #{u_id} AND u_auth = #{u_auth} 
+	</delete>
+	
+	<insert id="insertMemberAuth" parameterType="net.koreate.test.vo.AuthVO">
+		INSERT INTO validation_member_auth(u_id,u_auth) 
+		VALUES(#{u_id},#{u_auth})
+	</insert>
 </mapper>
 
 

@@ -11,24 +11,20 @@ import net.koreate.test.dao.MemberDAO;
 import net.koreate.test.vo.ValidationMemberVO;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration({"classpath:context/root/root-context.xml"})
+@ContextConfiguration({ "classpath:context/root/root-context.xml" })
 public class ValidationDAOTest {
-	
+
 	@Inject
 	private MemberDAO dao;
-	
+
 	@Test
 	public void testGetMemberById() {
 		ValidationMemberVO vo = dao.getMemberByID("aaa@aaa.com");
-		if(vo != null) {
+		if (vo != null) {
 			System.out.println(vo);
-		}else {
+		} else {
 			System.out.println("존재 하지 않음");
 		}
 	}
-	
+
 }
-
-
-
-

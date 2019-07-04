@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import net.koreate.test.dao.MemberDAO;
 import net.koreate.test.vo.ValidationMemberVO;
 
-public class CustomUserDetailsService implements UserDetailsService{
-	
+public class CustomUserDetailsService implements UserDetailsService {
+
 	@Inject
 	MemberDAO dao;
 
