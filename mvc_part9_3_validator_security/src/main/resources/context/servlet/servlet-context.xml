@@ -21,8 +21,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="net.koreate.controller" />
-	
-	
+	<context:component-scan base-package="net.koreate.test.controller" />
 	
 </beans:beans>
