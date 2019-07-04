@@ -14,6 +14,7 @@
 <script src="${path}/resources/js/jquery.validate.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" type="text/css" />  
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.js"></script>  
 </head>
 <body>
 	<header class="container">
@@ -54,6 +55,7 @@
 						<li><a href="${path}/user/join">회원가입</a></li>
 						<li><a href="${path}/user/joinVal">회원가입(validation)</a></li>
 					</sec:authorize>
+					<li><a href="/chat">chat</a></li>
 				</ul>			
 			</div>
 		</nav>	

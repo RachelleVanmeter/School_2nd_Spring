@@ -43,6 +43,10 @@
 		pattern="/mngt/**" 
 		access="hasAnyRole('ROLE_MEMBERSHIP','ROLE_MASTER')"/>
 		
+		<security:intercept-url 
+		pattern="/chat" 
+		access="authenticated"/>
+		
 	</security:http>
 	
 	<security:authentication-manager>
