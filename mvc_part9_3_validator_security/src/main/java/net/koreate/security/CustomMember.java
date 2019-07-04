@@ -23,6 +23,7 @@ public class CustomMember extends User {
 	
 	public CustomMember(MemberVo member) {
 		super(member.getU_id(), member.getU_pw(), authorities(member.getAuthList()));
+		this.member = member;
 	}
 	
 	public static Collection<? extends GrantedAuthority> authorities(List<AuthVo> list) {
