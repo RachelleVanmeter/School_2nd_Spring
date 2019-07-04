@@ -51,7 +51,7 @@
 						비활성화
 						</option>
 					</select>
-					<input type="button" class="deleteBtn" value="DELETEYN">
+					<input type="button" class="deleteBtn" value="DELETEYN"/>
 				</td>
 				<td>
 					<select class="changeAuth">
@@ -65,38 +65,62 @@
 		</c:forEach>
 	</table>
 </div>
-<script type="text/javascript">
-	$('.changeAuth').on('change', function() {
-		var parentTr = $(this).parent().parent();
-		var uid = parentTr.find('#userid').text();
-		var changeAuthVal = $(this).val();
-		console.log(uid + "  //  " + changeAuthVal);
-		$.post("/mngt/user/changeAuth", {u_id: uid, u_auth: changeAuthVal, '${_csrf.parameterName}': '${_csrf.token}'}, function(data) {
-			console.log(data);
-			var str = "";
-			$(data).each(function() {
-				if (this.u_auth == 'ROLE_USER') {
-					str += "일반사용자&nbsp;";
-				} else if (this.u_auth == 'ROLE_MEMBERSHIP') {
-					str += " 매니저 &nbsp;";
-				} else if (this.u_auth == 'ROLE_MASTER') {
-					str += " 관리자 &nbsp;";
-				}
+	<script>
+		$(".changeAuth").on("change",function(){
+			var parentTr = $(this).parent().parent();
+			var uid = parentTr.find("#userid").text();
+			var changeAuthValue = $(this).val();
+			
+			console.log(uid+" // " + changeAuthValue);
+			
+			$.post("/mngt/user/changeAuth",
+					{	u_id:uid ,
+						u_auth:changeAuthValue,
+						'${_csrf.parameterName}' : '${_csrf.token}'
+					},
+					function(data){
+						console.log(data);
+						
+						var str = "";
+						$(data).each(function(){
+							if(this.u_auth == 'ROLE_USER'){
+								str+=" 일반사용자 &nbsp;";
+							}else if(this.u_auth == 'ROLE_MEMBERSHIP'){
+								str+=" 매니저 &nbsp;";
+							}else if(this.u_auth == 'ROLE_MASTER'){
+								str+=" 관리자 &nbsp;";
+							}			
+						});
+						parentTr.find("#memberAuth").html(str);						
+					});
+			
+		});	
+		
+		
+		$(".deleteBtn").on("click",function(){
+			// u_delete == y(탈퇴,비활성화) n(가입,활성화)
+			var u_delete = $(this).parent().find(".deleteMember").val();
+			alert(u_delete);
+			var parentTr = $(this).parent().parent();
+			var u_id = parentTr.find("#userid").text();
+			$.post(
+				"/mngt/user/delete",
+				{	
+					u_id : u_id,
+					u_withdraw : u_delete,
+					'${_csrf.parameterName}' : '${_csrf.token}'
+				},
+				function(data){
+				console.log(data);
 			});
-			parentTr.find("#memberAuth").html(str);
+			
 		});
-	});
-	
-	$('.deleteBtn').on('click', function() {
-		// u_delete == y(탈퇴,비활성화) n(가입,활성화)
-		var u_delete = $(this).parent().find(".deleteMember").val();
-		alert(u_delete);
-		var parentTr = $(this).parent().parent();
-		var u_id = parentTr.find("#userid").text();
-		$.post("/mngt/user/delete", { u_id: u_id, u_withdraw: u_delete, '${_csrf.parameterName}': '${_csrf.token}'}, function(data) {
-			conole.log(data)
-		});
-	});
-</script>
+	</script>
 </body>
 </html>
+
+
+
+
+
+
