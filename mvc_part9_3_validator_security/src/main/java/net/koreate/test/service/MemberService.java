@@ -18,7 +18,9 @@ public interface MemberService {
 	// 사용자 리스트 정보
 	List<ValidationMemberVO> getMemberList() throws Exception;
 
-	// 권한 수정
 	List<AuthVO> updateAuth(AuthVO auth);
+
+	// 활성화 여부
+	void deleteYN(ValidationMemberVO vo);
 
 }

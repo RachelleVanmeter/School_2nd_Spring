@@ -79,4 +79,9 @@ public class MemberServiceImpl implements MemberService {
 		return afterList;
 	}
 
+	@Override
+	public void deleteYN(ValidationMemberVO vo) {
+		dao.deleteYN(vo);
+	}
+
 }

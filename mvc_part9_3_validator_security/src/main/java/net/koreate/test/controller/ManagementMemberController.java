@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.koreate.test.service.MemberService;
 import net.koreate.test.vo.AuthVO;
+import net.koreate.test.vo.ValidationMemberVO;
 
 @Controller
 @RequestMapping("/mngt/*")
@@ -32,6 +33,14 @@ public class ManagementMemberController {
 	public List<AuthVO> changeAuth(AuthVO auth) throws Exception {
 		System.out.println(auth);
 		List<AuthVO> authList = service.updateAuth(auth);
-		return null;
+		return authList;
+	}
+	
+	@PostMapping("/user/delete")
+	@ResponseBody
+	public String deleteYN(ValidationMemberVO vo) throws Exception {
+		System.out.println(vo);
+		service.deleteYN(vo);
+		return vo.getU_withdraw();
 	}
 }

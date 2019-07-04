@@ -22,7 +22,7 @@
 				<td>${members.u_no}</td>
 				<td id="userid">${members.u_id}</td>
 				<td>${members.u_name}</td>
-				<td>
+				<td id="memberAuth">
 					<c:forEach var="memberAuth" items="${members.authList}">
 						<c:if test="${memberAuth.u_auth eq 'ROLE_USER'}">
 							일반 사용자
@@ -43,7 +43,7 @@
 					<f:formatDate pattern="yyyy-MM-dd HH:mm" value="${members.u_visit_date}"/>
 				</td>
 				<td>
-					<select>
+					<select class="deleteMember">
 						<option value="n" <c:out value="${members.u_withdraw == 'n' ? 'selected' : ''}"/>>
 						활성화
 						</option>
@@ -51,6 +51,7 @@
 						비활성화
 						</option>
 					</select>
+					<input type="button" class="deleteBtn" value="DELETEYN">
 				</td>
 				<td>
 					<select class="changeAuth">
@@ -72,6 +73,28 @@
 		console.log(uid + "  //  " + changeAuthVal);
 		$.post("/mngt/user/changeAuth", {u_id: uid, u_auth: changeAuthVal, '${_csrf.parameterName}': '${_csrf.token}'}, function(data) {
 			console.log(data);
+			var str = "";
+			$(data).each(function() {
+				if (this.u_auth == 'ROLE_USER') {
+					str += "일반사용자&nbsp;";
+				} else if (this.u_auth == 'ROLE_MEMBERSHIP') {
+					str += " 매니저 &nbsp;";
+				} else if (this.u_auth == 'ROLE_MASTER') {
+					str += " 관리자 &nbsp;";
+				}
+			});
+			parentTr.find("#memberAuth").html(str);
+		});
+	});
+	
+	$('.deleteBtn').on('click', function() {
+		// u_delete == y(탈퇴,비활성화) n(가입,활성화)
+		var u_delete = $(this).parent().find(".deleteMember").val();
+		alert(u_delete);
+		var parentTr = $(this).parent().parent();
+		var u_id = parentTr.find("#userid").text();
+		$.post("/mngt/user/delete", { u_id: u_id, u_withdraw: u_delete, '${_csrf.parameterName}': '${_csrf.token}'}, function(data) {
+			conole.log(data)
 		});
 	});
 </script>

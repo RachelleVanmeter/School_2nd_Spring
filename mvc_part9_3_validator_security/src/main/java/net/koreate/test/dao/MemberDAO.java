@@ -23,5 +23,7 @@ public interface MemberDAO {
 	void deleteAuth(AuthVO auth);
 	// 권한 삽입
 	void insertMemberAuth(AuthVO auth);
+	// 활성화 여부 수정
+	void deleteYN(ValidationMemberVO vo);
 
 }

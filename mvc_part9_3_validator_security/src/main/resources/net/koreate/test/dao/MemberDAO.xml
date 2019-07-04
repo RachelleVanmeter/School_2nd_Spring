@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			mem.*, u_auth
 		FROM validation_member mem LEFT OUTER JOIN validation_member_auth mauth
 		on mem.u_id = mauth.u_id 
-		WHERE mem.u_id = #{u_id}
+		WHERE mem.u_id = #{u_id} AND u_withdraw = 'n'
 	</select>
 	
 	<!-- 신규회원 정보 등록 -->
@@ -88,6 +88,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		INSERT INTO validation_member_auth(u_id,u_auth) 
 		VALUES(#{u_id},#{u_auth})
 	</insert>
+	
+	<update id="deleteYN" parameterType="net.koreate.test.vo.ValidationMemberVO">
+		UPDATE validation_member SET 
+		u_withdraw = #{u_withdraw} 
+		WHERE u_id = #{u_id}
+	</update>
 </mapper>
 
 

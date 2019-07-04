@@ -32,4 +32,4 @@ SELECT * FROM validation_member;
 SELECT * FROM validation_member_auth;
 
 INSERT INTO validation_member_auth(u_id,u_auth) 
-VALUES('hap0p9y@nate.com','ROLE_MASTER')
+VALUES('ktm06069@naver.com','ROLE_MASTER')
